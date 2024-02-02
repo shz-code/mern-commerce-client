@@ -1,12 +1,12 @@
 import { Toaster } from "react-hot-toast";
 import Footer from "./Footer";
-import Navbar from "./Navbar";
+import Header from "./Header/Header";
 
 const Layout = ({ children }) => {
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
-      <Navbar />
+      <Header />
       <main>{children}</main>
       <Footer />
     </>
