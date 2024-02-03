@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer className="footer bg-slate-950 text-white">
       <div className="container mx-auto px-2 py-8">
-        <div className="grid sm:grid-cols-4 gap-8">
-          <div className="footerCol sm:col-span-2">
+        <div className="grid sm:grid-cols-3 gap-8">
+          <div className="footerCol">
             <div>
               <p className="text-4xl font-extrabold text-white">MERN</p>
             </div>
@@ -32,13 +32,16 @@ const Footer = () => {
               <h4 className="text-xl font-semibold uppercase">Contact</h4>
             </div>
             <div className="footerColBody">
-              <ul className="mt-2 grid gap-2">
+              <ul className="mt-2">
                 <li>
                   Phone: <a href="tel:01766XXXX73">01766XXXX73</a>
                 </li>
-                <li>
+                <li className="mt-2">
                   Email:{" "}
-                  <a href="mailto:contact@shahidulalam.xyz">
+                  <a
+                    className="break-words"
+                    href="mailto:contact@shahidulalam.xyz"
+                  >
                     contact@shahidulalam.xyz
                   </a>
                 </li>
