@@ -8,14 +8,12 @@ const Login = () => {
       <div className="flex items-center justify-center h-full">
         <div className="rounded-sm border border-white bg-white bg-card text-card-foreground shadow-md mx-auto max-w-md w-full p-3 sm:p-6">
           <div className="space-y-2">
-            <h3 className="whitespace-nowrap tracking-tight text-2xl font-bold">
-              Login
-            </h3>
+            <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-sm">
               Enter your email below to login to your account
             </p>
           </div>
-          <div className="mt-4">
+          <form className="mt-4">
             <div>
               <div className="space-y-2">
                 <label
@@ -62,6 +60,7 @@ const Login = () => {
                 <Button
                   className="w-full rounded bg-white text-black border-2 border-slate-200 hover:bg-slate-200"
                   title="Login with Google"
+                  type="submit"
                 />
               </div>
             </div>
@@ -71,7 +70,7 @@ const Login = () => {
                 Sign up
               </Link>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

@@ -14,6 +14,11 @@ const NavLinks = () => {
       nested: false,
     },
     {
+      name: "Register",
+      path: "/register",
+      nested: false,
+    },
+    {
       name: "Shop",
       path: "/shop",
       nested: true,
