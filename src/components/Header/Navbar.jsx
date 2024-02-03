@@ -1,6 +1,7 @@
-import { Menu, User } from "lucide-react";
+import { Menu, ShoppingCart, User } from "lucide-react";
+import { Link } from "react-router-dom";
 import NavLinks from "./NavLinks";
-const Navbar = ({ mobileNavOpen, setMobileNavOpen }) => {
+const Navbar = ({ mobileNavOpen, setMobileNavOpen, setCartOpen }) => {
   const handleMobileNavigation = () => {
     if (mobileNavOpen) setMobileNavOpen(false);
     else setMobileNavOpen(true);
@@ -16,10 +17,24 @@ const Navbar = ({ mobileNavOpen, setMobileNavOpen }) => {
             <ul className="gap-4 items-center hidden sm:flex">
               <NavLinks />
             </ul>
-            <div className="navActions flex items-center gap-2">
-              <div className="p-2 rounded-full bg-slate-200">
-                <User size={20} />
+            <div className="navActions flex items-center gap-4">
+              <div className="relative">
+                <Link
+                  to="/dashboard"
+                  className="inline-block p-2 rounded-full bg-slate-200 cursor-pointe"
+                >
+                  <User size={20} />
+                </Link>
+                {/* <div className="dashboardModal">Dashboard</div> */}
               </div>
+              <span
+                className="cursor-pointer"
+                onClick={() => {
+                  setCartOpen(true);
+                }}
+              >
+                <ShoppingCart size={20} />
+              </span>
               <div
                 className="block sm:hidden cursor-pointer"
                 onClick={handleMobileNavigation}

@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import Dashboard from "./components/Dashboard/Dashboard";
 import { Home } from "./components/Home/Home";
 import Layout from "./components/Layout";
 import { NotFound } from "./components/NotFound";
@@ -15,6 +16,7 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

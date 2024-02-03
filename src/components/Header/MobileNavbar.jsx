@@ -15,7 +15,7 @@ export const MobileNavbar = ({ setMobileNavOpen, mobileNavOpen }) => {
 
   return (
     <div
-      className={`bg-slate-200/50 fixed top-0 left-0 h-full w-full transition-all z-10 ${
+      className={`bg-slate-200/10 backdrop-blur fixed top-0 left-0 h-full w-full transition-all z-10 ${
         mobileNavOpen ? "translate-x-0" : "-translate-x-full"
       }`}
       onClick={(e) => handleClick(e)}
