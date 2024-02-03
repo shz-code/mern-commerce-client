@@ -3,7 +3,7 @@ import { Facebook, Linkedin } from "lucide-react";
 const TopBar = () => {
   return (
     <div className="bg-slate-950 text-white hidden sm:block">
-      <div className="container mx-auto px-2 py-4">
+      <div className="container mx-auto px-2 py-2">
         <div className="flex justify-between items-center">
           <span>
             <a

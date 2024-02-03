@@ -2,10 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .topBarIconLink {
     @apply p-2 bg-gradient-to-tr from-slate-400/40 to-slate-800/20 backdrop-blur-sm rounded-full hover:to-slate-800/50 transition-all
 }
 
 .topBarIcon {
     @apply fill-white stroke-none
+}
+
+.imgContainer {
+    @apply w-40
+}
+
+.img {
+    @apply w-full h-full object-cover
+}
+
+nav ul li a, nav ul li div {
+    @apply font-semibold tracking-tight py-4 border-b-4 border-transparent flex gap-2 items-center
+}
+
+nav ul li a.active {
+    @apply border-blue-950
+}
+
+li {
+    @apply relative transition-all
+}
+
+.nestedLinksContainer {
+    @apply absolute top-14 right-0 bg-slate-400/30 backdrop-blur-md p-2 rounded-md shadow w-60 hidden transition-all
+}
+
+nav ul li:hover .nestedLinksContainer {
+    @apply block transition-all
+}
+
+.nestedLinksContainer li a {
+    @apply flex justify-between px-2 hover:bg-slate-400/20 rounded-md
+}
+
+.inputGroup {
+    @apply relative
+}
+
+.inputGroup .brandInput {
+    @apply px-2 py-1 w-full rounded-sm bg-slate-950/10 text-white backdrop-blur-sm outline-none focus:ring-2 focus:ring-slate-200 shadow-lg
+}
+
+.inputGroup span {
+    @apply absolute top-1/2 -translate-y-1/2 right-0 px-3 py-2 bg-slate-800 rounded-sm text-white cursor-pointer
+}
+
+.mobileNavigationBar {
+    @apply flex justify-between gap-1
+}
+
+.mobileNavLink {
+    @apply p-2 font-semibold border-b-2 border-slate-50/20 text-white hover:bg-slate-800/30 rounded-sm
+}
+
+.mobileNavLink.active {
+    @apply border-slate-800;
+}
+
+.mobileNavigationBar div {
+    @apply w-full bg-slate-100/10 text-white uppercase font-semibold backdrop-blur flex justify-center py-1 rounded-sm cursor-pointer transition-all
+}
+
+.mobileNavigationBar div.active {
+    @apply bg-slate-800 transition-all
 }
