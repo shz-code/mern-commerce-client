@@ -1,7 +1,9 @@
+import { twMerge } from "tailwind-merge";
 const Input = ({
   type = "text",
   placeholder = "",
   clickAble,
+  className,
   icon,
   action = () => {},
   ...rest
@@ -12,7 +14,10 @@ const Input = ({
         type={type}
         placeholder={placeholder}
         {...rest}
-        className="brandInput"
+        className={twMerge(
+          "px-2 py-1 w-full rounded-sm bg-slate-950/10 text-white backdrop-blur-sm outline-none focus:ring-2 focus:ring-slate-200 shadow-lg placeholder:text-sm",
+          className
+        )}
       />
       {clickAble && (
         <span className="cursor-pointer" onClick={action}>

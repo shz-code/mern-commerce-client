@@ -1,4 +1,4 @@
-const Select = ({ selectItem, handleChange }) => {
+const Select = ({ selectItem = [], handleChange }) => {
   return (
     <select
       className="border-2 border-slate-500 rounded-sm p-1 text-black"

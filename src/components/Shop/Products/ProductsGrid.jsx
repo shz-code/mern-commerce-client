@@ -14,7 +14,11 @@ const ProductsGrid = () => {
   else if (!isLoading && !isError && data.length)
     content = data.map((item) => <ProductCard key={item._id} product={item} />);
 
-  return <div className="grid grid-cols-3 gap-4">{content}</div>;
+  return (
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {content}
+    </div>
+  );
 };
 
 export default ProductsGrid;
