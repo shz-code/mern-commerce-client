@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 
-.topBarIconLink {
+.topBarIconLink,
+.footerSocialLink {
     @apply p-2 bg-gradient-to-tr from-slate-400/40 to-slate-800/20 backdrop-blur-sm rounded-full hover:to-slate-800/50 transition-all
 }
 
@@ -73,4 +74,8 @@ nav ul li:hover .nestedLinksContainer {
 
 .mobileNavigationBar div.active {
     @apply bg-slate-800 transition-all
+}
+
+.footerColBody a {
+    @apply text-gray-400 hover:text-white transition-all
 }
