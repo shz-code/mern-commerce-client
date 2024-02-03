@@ -9,6 +9,11 @@ const NavLinks = () => {
       nested: false,
     },
     {
+      name: "Login",
+      path: "/login",
+      nested: false,
+    },
+    {
       name: "Shop",
       path: "/shop",
       nested: true,

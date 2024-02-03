@@ -1,7 +1,12 @@
-const Button = ({ title, ...rest }) => {
+import { twMerge } from "tailwind-merge";
+
+const Button = ({ title, className, ...rest }) => {
   return (
     <button
-      className="bg-slate-800 hover:bg-slate-950 text-white px-4 py-2 rounded-sm"
+      className={twMerge(
+        "bg-slate-800 hover:bg-slate-950 text-white px-4 py-2 rounded  transition-all",
+        className
+      )}
       {...rest}
     >
       {title}
