@@ -1,10 +1,4 @@
-import {
-  Banknote,
-  CircleUser,
-  Layers2,
-  ListOrdered,
-  ShoppingBag,
-} from "lucide-react";
+import { Banknote, Layers2, ListOrdered, ShoppingBag } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const LinkItem = ({ link }) => {
@@ -18,11 +12,6 @@ const LinkItem = ({ link }) => {
 
 const DashboardLinks = () => {
   let links = [
-    {
-      name: "Profile",
-      path: "/dashboard/profile",
-      icon: <CircleUser size={18} />,
-    },
     {
       name: "Orders",
       path: "/dashboard/orders",

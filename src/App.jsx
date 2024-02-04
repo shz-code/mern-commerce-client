@@ -1,11 +1,11 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import Categories from "./components/Dashboard/Categories/Categories";
 import Dashboard from "./components/Dashboard/Dashboard";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import Orders from "./components/Dashboard/Orders/Orders";
 import Products from "./components/Dashboard/Products/Products";
-import Profile from "./components/Dashboard/Profile/Profile";
 import { Home } from "./components/Home/Home";
 import Layout from "./components/Layout";
 import { NotFound } from "./components/NotFound";
@@ -30,14 +30,6 @@ function App() {
               }
             />
             <Route
-              path="profile"
-              element={
-                <DashboardLayout>
-                  <Profile />
-                </DashboardLayout>
-              }
-            />
-            <Route
               path="orders"
               element={
                 <DashboardLayout>
@@ -50,6 +42,14 @@ function App() {
               element={
                 <DashboardLayout>
                   <Products />
+                </DashboardLayout>
+              }
+            />
+            <Route
+              path="categories"
+              element={
+                <DashboardLayout>
+                  <Categories />
                 </DashboardLayout>
               }
             />

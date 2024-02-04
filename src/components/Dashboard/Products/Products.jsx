@@ -1,5 +1,7 @@
 import { PlusCircle } from "lucide-react";
 import { useRef, useState } from "react";
+import toast from "react-hot-toast";
+import Button from "../../ui/Button";
 import Input from "../../ui/Input";
 import Select from "../../ui/Select";
 import TextArea from "../../ui/TextArea";
@@ -35,7 +37,7 @@ const Products = () => {
 
   return (
     <main>
-      <div className="bg-white shadow rounded">
+      <form className="bg-white shadow rounded">
         <div className="p-4">
           <div>
             <h3 className="text-3xl font-bold">Product Details</h3>
@@ -115,7 +117,18 @@ const Products = () => {
             </div>
           </div>
         </div>
-      </div>
+        <div className="flex gap-2 p-4">
+          <Button title="Submit" type="submit" />
+          <Button
+            className="bg-white text-black border-2 border-slate-200 hover:bg-slate-200"
+            title="Reset"
+            type="reset"
+            onClick={() => {
+              toast.success("Reset");
+            }}
+          />
+        </div>
+      </form>
     </main>
   );
 };

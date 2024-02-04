@@ -5,7 +5,7 @@ import Header from "./Header/Header";
 const Layout = ({ children }) => {
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="bottom-right" reverseOrder={false} />
       <Header />
       <main>{children}</main>
       <Footer />
