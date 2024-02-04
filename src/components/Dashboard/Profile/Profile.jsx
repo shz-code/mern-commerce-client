@@ -1,11 +1,21 @@
+import { useState } from "react";
+import EditProfile from "./EditProfile";
+
 const Profile = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <div className="w-full lg:w-auto">
       <div className="rounded bg-white shadow p-4">
         <div className="border-b space-y-2">
           <div className="flex justify-between items-center">
             <h3 className="text-xl font-semibold">User</h3>
-            <span className="text-xs underline cursor-pointer">Edit</span>
+            <span
+              className="text-xs underline cursor-pointer"
+              onClick={() => setModalOpen((prev) => !prev)}
+            >
+              Edit
+            </span>
           </div>
           <div className="text-sm">
             <div className="space-y-1 pb-2">
@@ -32,6 +42,8 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      {/* Modal */}
+      {modalOpen && <EditProfile setModalOpen={setModalOpen} />}
     </div>
   );
 };

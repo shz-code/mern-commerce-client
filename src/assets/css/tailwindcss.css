@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply bg-[#E2E8F0]
+}
 
 .topBarIconLink,
 .footerSocialLink {
