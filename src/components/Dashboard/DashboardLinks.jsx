@@ -20,7 +20,7 @@ const DashboardLinks = () => {
   let links = [
     {
       name: "Profile",
-      path: "/dashboard",
+      path: "/dashboard/profile",
       icon: <CircleUser size={18} />,
     },
     {

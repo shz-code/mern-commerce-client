@@ -3,8 +3,8 @@ import DashboardLinks from "./DashboardLinks";
 
 const Sidebar = () => {
   return (
-    <>
-      <div className="flex items-center space-x-2 border-b-4 pb-2">
+    <div className="bg-white rounded p-4 sticky top-2">
+      <div className="flex items-center space-x-2 border-b-4 pb-2 ">
         {/* <img
             alt="Logo"
             className="rounded-full"
@@ -28,7 +28,7 @@ const Sidebar = () => {
           Logout
         </span>
       </nav>
-    </>
+    </div>
   );
 };
 

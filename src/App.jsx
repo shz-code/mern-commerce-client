@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import Dashboard from "./components/Dashboard/Dashboard";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import Orders from "./components/Dashboard/Orders/Orders";
 import Profile from "./components/Dashboard/Profile/Profile";
@@ -21,6 +22,14 @@ function App() {
           <Route path="/dashboard">
             <Route
               path=""
+              element={
+                <DashboardLayout>
+                  <Dashboard />
+                </DashboardLayout>
+              }
+            />
+            <Route
+              path="profile"
               element={
                 <DashboardLayout>
                   <Profile />
