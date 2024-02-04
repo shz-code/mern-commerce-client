@@ -6,7 +6,7 @@ import TopBar from "./TopBar";
 
 const Header = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(true);
+  const [cartOpen, setCartOpen] = useState(false);
   return (
     <div>
       <TopBar />
