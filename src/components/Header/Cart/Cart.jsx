@@ -32,13 +32,21 @@ const Cart = ({ setCartOpen, cartOpen }) => {
               </div>
             </div>
           </div>
-          <div className="my-4 space-y-2">
-            <Button
-              className="w-full bg-slate-100 text-black hover:bg-slate-200"
-              title={<Link to="/cart">Go to cart</Link>}
-              onClick={() => setCartOpen(false)}
-            />
-            <Button className="w-full" title="Go to checkout" />
+          <div className="my-4">
+            <Link to="/cart">
+              <Button
+                title="Go to cart"
+                onClick={() => setCartOpen(false)}
+                className="w-full bg-slate-100 text-black hover:bg-slate-200"
+              />
+            </Link>
+            <Link to="checkout">
+              <Button
+                className="w-full mt-2"
+                title="Go to checkout"
+                onClick={() => setCartOpen(false)}
+              />
+            </Link>
           </div>
         </div>
       </div>

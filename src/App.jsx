@@ -9,6 +9,7 @@ import Payments from "./components/Dashboard/Payments/Payments";
 import Products from "./components/Dashboard/Products/Products";
 
 import Cart from "./components/Cart/Cart";
+import Checkout from "./components/Checkout/Checkout";
 import { Home } from "./components/Home/Home";
 import Layout from "./components/Layout";
 import { NotFound } from "./components/NotFound";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/dashboard">
             <Route
               path=""

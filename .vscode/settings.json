@@ -5,6 +5,10 @@
       "source.fixAll.tslint": "explicit",
       "source.organizeImports": "explicit"
     },
+    "tailwindCSS.experimental.classRegex": [
+      ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+      ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+    ],
     "javascript.validate.enable": false,
     "typescript.validate.enable": false,
     "css.lint.unknownAtRules": "ignore",

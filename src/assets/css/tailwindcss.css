@@ -6,6 +6,10 @@ body {
     @apply bg-[#E2E8F0]
 }
 
+.container {
+    @apply max-w-[1200px] w-full
+}
+
 .topBarIconLink,
 .footerSocialLink {
     @apply p-2 bg-gradient-to-tr from-slate-400/40 to-slate-800/20 backdrop-blur-sm rounded-full hover:to-slate-800/50 transition-all

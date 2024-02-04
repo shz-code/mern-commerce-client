@@ -32,10 +32,10 @@ const DesktopCartContainer = () => {
               <td>
                 <Link to={`/product/`}>Glimmer Lamps</Link>
               </td>
-              <td className="w-20">Lorem ipsum dolor sit...</td>
+              <td>Lorem ipsum dolor sit...</td>
               <td>120৳</td>
               <td>
-                <div className="flex justify-between items-center gap-2">
+                <div className="flex justify-center items-center gap-2">
                   <span className="p-1 rounded-full bg-slate-800 inline-block text-white">
                     <Minus size={12} />
                   </span>
