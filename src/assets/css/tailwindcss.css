@@ -36,7 +36,7 @@ li {
 }
 
 .nestedLinksContainer {
-    @apply absolute top-14 right-0 bg-slate-300/30 backdrop-blur-lg p-2 rounded shadow w-60 hidden transition-all
+    @apply absolute top-14 right-0 bg-slate-300/30 backdrop-blur-lg p-2 rounded shadow w-60 hidden transition-all z-10
 }
 
 nav ul li:hover .nestedLinksContainer {
@@ -95,4 +95,42 @@ nav ul li:hover .nestedLinksContainer {
 
 .dashboardNavLinks a.active {
     @apply bg-slate-100
+}
+
+/* Cart */
+.cartContainer {
+    @apply w-full hidden md:grid gap-4
+}
+
+.cartTable {
+    @apply text-sm w-full bg-white rounded shadow
+}
+
+.cartTable thead {
+    @apply border-b-4
+}
+
+.cartTable tr {
+    @apply px-4
+}
+
+.cartTable th, td {
+    @apply table-cell px-4 py-2 border text-center
+}
+
+.cartTable th {
+    @apply uppercase
+}
+
+
+.mobileCartContainer {
+    @apply grid gap-4 md:hidden
+}
+
+.mobileCartContainer p {
+    @apply flex items-center justify-between flex-wrap border-b py-2 gap-2
+}
+
+.mobileCartContainer p:last-child {
+    @apply border-none
 }

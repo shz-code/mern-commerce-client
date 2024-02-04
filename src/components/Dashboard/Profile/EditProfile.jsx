@@ -7,10 +7,10 @@ const EditProfile = ({ setModalOpen }) => {
   };
   return (
     <div
-      className="fixed top-0 left-0 h-full w-full bg-slate-950/30 editProfileModal z-10 flex justify-center items-center"
+      className="fixed top-0 left-0 h-full w-full bg-slate-950/30 editProfileModal z-10 flex justify-center items-center cursor-pointer"
       onClick={(e) => handleClick(e)}
     >
-      <div className=" bg-slate-50/80 backdrop-blur rounded">
+      <div className=" bg-slate-50/80 backdrop-blur rounded cursor-default">
         <form>
           <div className="p-4">
             <div>

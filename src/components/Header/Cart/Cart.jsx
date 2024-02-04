@@ -1,4 +1,5 @@
 import { User2Icon } from "lucide-react";
+import { Link } from "react-router-dom";
 import Button from "../../ui/Button";
 
 const Cart = ({ setCartOpen, cartOpen }) => {
@@ -34,7 +35,8 @@ const Cart = ({ setCartOpen, cartOpen }) => {
           <div className="my-4 space-y-2">
             <Button
               className="w-full bg-slate-100 text-black hover:bg-slate-200"
-              title="Go to cart"
+              title={<Link to="/cart">Go to cart</Link>}
+              onClick={() => setCartOpen(false)}
             />
             <Button className="w-full" title="Go to checkout" />
           </div>
