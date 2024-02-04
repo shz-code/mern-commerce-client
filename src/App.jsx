@@ -4,6 +4,7 @@ import Register from "./components/Auth/Register";
 import Dashboard from "./components/Dashboard/Dashboard";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import Orders from "./components/Dashboard/Orders/Orders";
+import Products from "./components/Dashboard/Products/Products";
 import Profile from "./components/Dashboard/Profile/Profile";
 import { Home } from "./components/Home/Home";
 import Layout from "./components/Layout";
@@ -41,6 +42,14 @@ function App() {
               element={
                 <DashboardLayout>
                   <Orders />
+                </DashboardLayout>
+              }
+            />
+            <Route
+              path="products"
+              element={
+                <DashboardLayout>
+                  <Products />
                 </DashboardLayout>
               }
             />
