@@ -6,7 +6,7 @@ const ProductDetails = () => {
   return (
     <div className="container mx-auto px-2 py-8">
       <main className="max-w-[1000px] w-full mx-auto bg-white rounded shadow p-4">
-        <div className="flex gap-4">
+        <div className="md:flex gap-4">
           <div className="w-full relative">
             <img
               alt="Product Image"
@@ -14,7 +14,7 @@ const ProductDetails = () => {
             />
             <div className="absolute top-0 left-0 w-full h-full hover:bg-slate-800/10 transition-all"></div>
           </div>
-          <div className="w-3/4">
+          <div className="md:w-3/4">
             <div className="sticky top-2 space-y-4">
               <h1 className="mt-6 text-3xl font-bold">The Trendy T-Shirt</h1>
               <span className="w-fit bg-slate-800 rounded-full px-3 pt-1 pb-2 text-white flex gap-2 items-center">
