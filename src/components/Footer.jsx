@@ -19,10 +19,10 @@ const Footer = () => {
             <div className="footerColBody">
               <ul className="mt-2 grid gap-2">
                 <li>
-                  <Link to="dashboard">Account</Link>
+                  <Link to="/dashboard">Account</Link>
                 </li>
                 <li>
-                  <Link to="orders">Orders</Link>
+                  <Link to="/dashboard/orders">Orders</Link>
                 </li>
               </ul>
             </div>
@@ -60,19 +60,27 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="copyright flex gap-1 justify-center items-center py-4 bg-slate-800">
-        <Copyright size={18} />{" "}
-        <span>
-          Protected. Developed by{" "}
-          <a
-            className="text-slate-200 font-extrabold"
-            href="https://github.com/shz-code"
-            target="_blank"
-            rel="noreferrer"
-          >
-            @shz-code
-          </a>
-        </span>
+      <div className="copyright py-4 bg-slate-800">
+        <div className="container mx-auto px-2 text-sm flex justify-between">
+          <div className="flex gap-1 items-center">
+            <Copyright size={18} />{" "}
+            <span>
+              Protected. Developed by{" "}
+              <a
+                className="text-slate-200 font-extrabold"
+                href="https://github.com/shz-code"
+                target="_blank"
+                rel="noreferrer"
+              >
+                @shz-code
+              </a>
+            </span>
+          </div>
+          <div className="flex gap-4 text-slate-500">
+            <Link className="hover:underline">Terms of Service</Link>
+            <Link className="hover:underline">Privacy</Link>
+          </div>
+        </div>
       </div>
     </footer>
   );
