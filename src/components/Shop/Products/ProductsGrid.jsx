@@ -4,7 +4,7 @@ import Error from "../../ui/Error";
 import Loader from "../../ui/Loader";
 import { ProductCard } from "./ProductCard";
 
-const ProductsGrid = () => {
+const ProductsGrid = ({ lodeMoreHidden }) => {
   const { data, isLoading, isError, error } = useGetProductsQuery();
 
   let content = null;
@@ -21,7 +21,7 @@ const ProductsGrid = () => {
         {content}
       </div>
       <div className="flex justify-center mt-4">
-        {!isError && !isLoading && data.length && (
+        {!isError && !isLoading && data.length && !lodeMoreHidden && (
           <Button
             className="bg-transparent text-black border border-slate-800 hover:bg-slate-100 text-sm px-2 py-1"
             title="Load More"

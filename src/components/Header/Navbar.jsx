@@ -11,7 +11,9 @@ const Navbar = ({ mobileNavOpen, setMobileNavOpen, setCartOpen }) => {
       <div className="container mx-auto px-2">
         <div className="flex justify-between items-center">
           <div className="w-12">
-            <p className="text-4xl font-extrabold">MERN</p>
+            <Link to="/">
+              <p className="text-4xl font-extrabold">MERN</p>
+            </Link>
           </div>
           <nav className="flex justify-between gap-4 py-2 sm:py-0">
             <ul className="gap-4 items-center hidden sm:flex">
