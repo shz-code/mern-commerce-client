@@ -5,6 +5,7 @@ import Categories from "./components/Dashboard/Categories/Categories";
 import Dashboard from "./components/Dashboard/Dashboard";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import Orders from "./components/Dashboard/Orders/Orders";
+import Payments from "./components/Dashboard/Payments/Payments";
 import Products from "./components/Dashboard/Products/Products";
 import { Home } from "./components/Home/Home";
 import Layout from "./components/Layout";
@@ -50,6 +51,14 @@ function App() {
               element={
                 <DashboardLayout>
                   <Categories />
+                </DashboardLayout>
+              }
+            />
+            <Route
+              path="payments"
+              element={
+                <DashboardLayout>
+                  <Payments />
                 </DashboardLayout>
               }
             />
