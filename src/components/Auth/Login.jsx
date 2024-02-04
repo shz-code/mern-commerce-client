@@ -6,7 +6,7 @@ const Login = () => {
   return (
     <div className="w-full py-8 bg-slate-200 px-2">
       <div className="flex items-center justify-center h-full">
-        <div className="rounded-sm border border-white bg-white bg-card text-card-foreground shadow-md mx-auto max-w-md w-full p-3 sm:p-6">
+        <div className="rounded-sm border-t-4 border-slate-950 bg-white shadow mx-auto max-w-md w-full p-3 sm:p-6">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-sm">

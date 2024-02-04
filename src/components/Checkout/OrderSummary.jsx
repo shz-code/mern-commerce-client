@@ -43,7 +43,7 @@ const OrderSummary = () => {
       {/* Coupon */}
       <form action="" className="mt-4" onSubmit={() => alert("Hello")}>
         <Input
-          className="rounded shadow-none bg-transparent border-2 border-slate-200 text-black"
+          className="py-2 rounded shadow-none bg-transparent border-2 border-slate-200 text-black"
           icon={<TicketCheck size={15} />}
           placeholder="Have a coupon?"
         />

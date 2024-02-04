@@ -5,7 +5,7 @@ import OrderSummary from "./OrderSummary";
 const Checkout = () => {
   return (
     <div className="container mx-auto px-2 py-8">
-      <div className="border-t-4 border-slate-950 rounded bg-white px-8">
+      <div className="border-t-4 border-slate-950 rounded bg-white px-4 md:px-8">
         <div className="checkoutHeader flex items-center justify-between py-8 border-b-4">
           <div className="space-y-4 w-full">
             <h3 className="font-bold text-3xl">Complete your order</h3>
