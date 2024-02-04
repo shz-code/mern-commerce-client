@@ -13,6 +13,7 @@ import Checkout from "./components/Checkout/Checkout";
 import { Home } from "./components/Home/Home";
 import Layout from "./components/Layout";
 import { NotFound } from "./components/NotFound";
+import ProductDetails from "./components/Product/ProductDetails";
 import Shop from "./components/Shop/Shop";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/Register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/dashboard">
             <Route
               path=""
