@@ -21,7 +21,7 @@ export const MobileNavbar = ({ setMobileNavOpen, mobileNavOpen }) => {
       onClick={(e) => handleClick(e)}
     >
       <div className="flex justify-start h-full mobileNavFixed">
-        <div className="bg-gradient-to-tr from-slate-800/80 to-slate-950/30 backdrop-blur-md h-full w-80 px-4 shadow-md">
+        <div className="bg-gradient-to-tr from-slate-800/80 to-slate-950/30 backdrop-blur-md h-full w-80 px-4 shadow-md mobileNavSlider overflow-y-scroll">
           <div className="flex justify-between items-center mt-2">
             <p className="text-4xl font-extrabold text-white">MERN</p>
             <span

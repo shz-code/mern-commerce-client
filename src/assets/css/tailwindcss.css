@@ -138,3 +138,24 @@ nav ul li:hover .nestedLinksContainer {
 .mobileCartContainer p:last-child {
     @apply border-none
 }
+
+/* Cart Slider */
+
+.cartSlider {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.cartSlider::-webkit-scrollbar {
+    display: none;
+}
+
+/* Mobile Nav */
+.mobileNavSlider {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.mobileNavSlider::-webkit-scrollbar {
+    display: none;
+}

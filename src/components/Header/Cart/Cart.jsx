@@ -13,7 +13,7 @@ const Cart = ({ setCartOpen, cartOpen }) => {
       onClick={(e) => handleClick(e)}
     >
       <div className="flex justify-end h-full cartOpen">
-        <div className="bg-gradient-to-tr from-slate-800/80 to-slate-950/30 backdrop-blur-md min-h-screen max-w-[300px] w-full px-4 shadow-md flex flex-col justify-between">
+        <div className="bg-gradient-to-tr from-slate-800/80 to-slate-950/30 backdrop-blur-md min-h-screen max-w-[300px] w-full px-4 shadow-md flex flex-col justify-between cartSlider overflow-y-scroll">
           <div className="mt-2">
             <p className="text-4xl font-extrabold text-white">Cart</p>
             <div className="cartItems mt-4">
