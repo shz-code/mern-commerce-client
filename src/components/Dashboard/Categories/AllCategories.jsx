@@ -6,7 +6,6 @@ import CategoryPill from "./CategoryPill";
 const AllCategories = () => {
   const { data, isLoading, isError, error } = useGetCategoriesQuery();
 
-  console.log(error);
   let content = null;
   if (isLoading) content = <Loader />;
   else if (!isLoading && isError) content = <Error message={error.status} />;

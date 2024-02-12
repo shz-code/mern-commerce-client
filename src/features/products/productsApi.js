@@ -5,7 +5,14 @@ const productsApi = apiSlice.injectEndpoints({
     getProducts: builder.query({
       query: () => "product",
     }),
+    addProduct: builder.mutation({
+      query: (body) => ({
+        url: "product",
+        method: "POST",
+        body: body,
+      }),
+    }),
   }),
 });
 
-export const { useGetProductsQuery } = productsApi;
+export const { useGetProductsQuery, useAddProductMutation } = productsApi;

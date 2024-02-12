@@ -13,6 +13,7 @@
     "typescript.validate.enable": false,
     "css.lint.unknownAtRules": "ignore",
     "cSpell.words": [
+      "Formik",
       "Ninish",
       "tailwindcss"
     ]
