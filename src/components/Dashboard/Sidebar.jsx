@@ -1,4 +1,5 @@
 import { LogOut, User } from "lucide-react";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { userLoggedOut } from "../../features/auth/authSlice";
 import DashboardLinks from "./DashboardLinks";
@@ -30,6 +31,7 @@ const Sidebar = () => {
           className="border cursor-pointer"
           onClick={() => {
             dispatch(userLoggedOut());
+            toast.success("Logged Out");
           }}
         >
           <LogOut size={18} />

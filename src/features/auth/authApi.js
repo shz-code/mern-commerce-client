@@ -46,7 +46,48 @@ export const authApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    register: builder.mutation({
+      query: (data) => ({
+        url: "user/register",
+        method: "POST",
+        body: data,
+      }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        try {
+          const res = await queryFulfilled;
+          const decoded = jwtDecode(res.data.token);
+          const { _id, username, role, exp } = decoded;
+          localStorage.setItem(
+            "auth",
+            JSON.stringify({
+              username: username,
+              role: role,
+              _id: _id,
+              exp: exp * 1000,
+            })
+          );
+          localStorage.setItem(
+            "token",
+            JSON.stringify({
+              token: res.data.token,
+            })
+          );
+          dispatch(
+            userLoggedIn({
+              username: username,
+              role: role,
+              _id: _id,
+              exp: exp * 1000,
+              token: res.data.token,
+            })
+          );
+          toast.success("Registration Successful");
+        } catch (err) {
+          toast.error(err.error.data);
+        }
+      },
+    }),
   }),
 });
 
-export const { useLoginMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation } = authApi;
