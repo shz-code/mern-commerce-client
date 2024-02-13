@@ -1,7 +1,10 @@
 import { LogOut, User } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { userLoggedOut } from "../../features/auth/authSlice";
 import DashboardLinks from "./DashboardLinks";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
   return (
     <div className="bg-white rounded p-4 sticky top-2">
       <div className="flex items-center space-x-2 border-b-4 pb-2 ">
@@ -23,7 +26,12 @@ const Sidebar = () => {
       </div>
       <nav className="dashboardNavLinks mt-4">
         <DashboardLinks />
-        <span className="border cursor-pointer" onClick={() => {}}>
+        <span
+          className="border cursor-pointer"
+          onClick={() => {
+            dispatch(userLoggedOut());
+          }}
+        >
           <LogOut size={18} />
           Logout
         </span>

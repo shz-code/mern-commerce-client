@@ -1,22 +1,11 @@
 import { ArrowDown, ArrowRight } from "lucide-react";
-import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const NavLinks = () => {
-  let navLinks = [
+  const navLinks = [
     {
       name: "Home",
       path: "/",
-      nested: false,
-    },
-    {
-      name: "Login",
-      path: "/login",
-      nested: false,
-    },
-    {
-      name: "Register",
-      path: "/register",
       nested: false,
     },
     {
@@ -31,28 +20,6 @@ const NavLinks = () => {
       ],
     },
   ];
-
-  const { _id } = useSelector((state) => state.user);
-  if (_id) {
-    navLinks = navLinks = [
-      {
-        name: "Home",
-        path: "/",
-        nested: false,
-      },
-      {
-        name: "Shop",
-        path: "/shop",
-        nested: true,
-        children: [
-          {
-            name: "Categories",
-            path: "/shop/category",
-          },
-        ],
-      },
-    ];
-  }
 
   return navLinks.map((navItem) => (
     <li key={navItem.name}>
