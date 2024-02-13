@@ -1,8 +1,14 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useGetProfileQuery } from "../../../features/profile/profileApi";
 import EditProfile from "./EditProfile";
 
 const Profile = () => {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const { _id } = useSelector((state) => state.user);
+
+  const { data } = useGetProfileQuery(_id);
 
   return (
     <div className="w-full lg:w-auto">
@@ -19,8 +25,10 @@ const Profile = () => {
           </div>
           <div className="text-sm">
             <div className="space-y-1 pb-2">
-              <span className="text-slate-600 underline">Sophia Anderson</span>
-              <div>23 total orders</div>
+              <span className="text-slate-600 underline">
+                {data?.user?.name}
+              </span>
+              <div>{data?.orders} total order(s)</div>
             </div>
           </div>
         </div>
@@ -28,8 +36,8 @@ const Profile = () => {
           <h3 className="text-xl font-semibold">Contact information</h3>
           <div className="text-sm">
             <div className="space-y-1">
-              <span className="text-slate-600">sophia@example.com</span>
-              <div className="text-gray-500 ">+1 888 8888 8888</div>
+              <span className="text-slate-600">{data?.user?.email}</span>
+              <div className="text-gray-500 ">0{data?.user?.phone}</div>
             </div>
           </div>
         </div>

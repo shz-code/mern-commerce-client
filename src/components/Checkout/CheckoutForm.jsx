@@ -43,18 +43,34 @@ const CheckoutForm = () => {
           />
         </div>
         <div className="w-full flex justify-between gap-4">
+          {/* State */}
+          <div className="w-full space-y-2">
+            <label
+              className="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              htmlFor="state"
+            >
+              State
+            </label>
+            <Input
+              className="py-2 rounded shadow-none bg-transparent border-2 border-slate-200 text-black"
+              id="state"
+              placeholder="Dhaka"
+              required
+              type="text"
+            />
+          </div>
           {/* City */}
           <div className="w-full space-y-2">
             <label
               className="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              htmlFor="email"
+              htmlFor="city"
             >
               City
             </label>
             <Input
               className="py-2 rounded shadow-none bg-transparent border-2 border-slate-200 text-black"
-              id="email"
-              placeholder="contact@shahidulalam.xyz / shz"
+              id="city"
+              placeholder="Dhaka"
               required
               type="text"
             />
@@ -63,14 +79,14 @@ const CheckoutForm = () => {
           <div className="w-full space-y-2">
             <label
               className="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              htmlFor="email"
+              htmlFor="postcode"
             >
               Postcode
             </label>
             <Input
               className="py-2 rounded shadow-none bg-transparent border-2 border-slate-200 text-black"
-              id="email"
-              placeholder="contact@shahidulalam.xyz / shz"
+              id="postcode"
+              placeholder="1200"
               required
               type="text"
             />
@@ -80,14 +96,14 @@ const CheckoutForm = () => {
         <div className="w-full space-y-2">
           <label
             className="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            htmlFor="email"
+            htmlFor="phone"
           >
             Phone
           </label>
           <Input
             className="py-2 rounded shadow-none bg-transparent border-2 border-slate-200 text-black"
-            id="email"
-            placeholder="contact@shahidulalam.xyz / shz"
+            id="phone"
+            placeholder="01766****93"
             required
             type="text"
           />
