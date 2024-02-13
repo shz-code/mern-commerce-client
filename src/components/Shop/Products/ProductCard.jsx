@@ -1,3 +1,4 @@
+import { Tag } from "lucide-react";
 import { Link } from "react-router-dom";
 import Button from "../../ui/Button";
 
@@ -13,11 +14,21 @@ export const ProductCard = ({ product }) => {
       </Link>
       {/* Card Details */}
       <div className="listRoomCard-details">
-        <h5 className="font-semibold text-lg">
-          <Link to={`/product/${_id}`}>
-            {name.length > 25 ? <span>{name.substring(0, 25)}...</span> : name}
-          </Link>
-        </h5>
+        <div className="flex justify-between">
+          <h5 className="font-semibold text-lg">
+            <Link to={`/product/${_id}`}>
+              {name.length > 25 ? (
+                <span>{name.substring(0, 25)}...</span>
+              ) : (
+                name
+              )}
+            </Link>
+          </h5>
+          <span className="w-fit rounded-full flex gap-2 items-center text-sm font-semibold text-slate-500">
+            <Tag size={12} />
+            {category.name}
+          </span>
+        </div>
         {/* Card Body */}
         <div className="card-body grid gap-1 mt-2">
           <p>
@@ -39,9 +50,11 @@ export const ProductCard = ({ product }) => {
           {quantity > 0 ? (
             <Button title="Add to cart" />
           ) : (
-            <Link to={`/room/${_id}`}>
-              <Button title="Book Today" />
-            </Link>
+            <Button
+              title="Not in stock"
+              className="disabled:bg-red-800"
+              disabled
+            />
           )}
           <div className="flex gap-1 justify-center sm:justify-end mt-2 sm:mt-0">
             <span className="font-bold">{quantity} Sold</span>
