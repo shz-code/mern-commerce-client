@@ -13,7 +13,7 @@ const Button = ({ title, className, disabled, loading, ...rest }) => {
       {!disabled ? (
         title
       ) : loading ? (
-        <span className="flex gap-2 items-center">
+        <span className="flex gap-2 items-center justify-center">
           {title} <Loader />{" "}
         </span>
       ) : (

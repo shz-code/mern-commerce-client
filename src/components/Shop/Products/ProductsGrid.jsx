@@ -9,7 +9,7 @@ const ProductsGrid = ({ lodeMoreHidden }) => {
 
   let content = null;
   if (isLoading) content = <Loader />;
-  else if (!isLoading && isError) content = <Error message={error.status} />;
+  else if (!isLoading && isError) content = <Error message={error.data} />;
   else if (!isLoading && !isError && !data.length)
     content = <Error message="Nothing Found" />;
   else if (!isLoading && !isError && data.length)
