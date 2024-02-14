@@ -1,4 +1,5 @@
 import { Banknote, Layers2, ListOrdered, ShoppingBag } from "lucide-react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const LinkItem = ({ link }) => {
@@ -11,6 +12,8 @@ const LinkItem = ({ link }) => {
 };
 
 const DashboardLinks = () => {
+  const { role } = useSelector((state) => state.user);
+
   let links = [
     {
       name: "Orders",
@@ -22,17 +25,22 @@ const DashboardLinks = () => {
       path: "/dashboard/payments",
       icon: <Banknote size={18} />,
     },
-    {
-      name: "Categories",
-      path: "/dashboard/categories",
-      icon: <Layers2 size={18} />,
-    },
-    {
-      name: "Products",
-      path: "/dashboard/products",
-      icon: <ShoppingBag size={18} />,
-    },
   ];
+
+  if (role === "admin")
+    links = [
+      ...links,
+      {
+        name: "Categories",
+        path: "/dashboard/categories",
+        icon: <Layers2 size={18} />,
+      },
+      {
+        name: "Products",
+        path: "/dashboard/products",
+        icon: <ShoppingBag size={18} />,
+      },
+    ];
   return (
     <div>
       {links.map((item) => (

@@ -1,6 +1,7 @@
 import { LogOut, User } from "lucide-react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { userLoggedOut } from "../../features/auth/authSlice";
 import DashboardLinks from "./DashboardLinks";
 
@@ -20,10 +21,12 @@ const Sidebar = () => {
             }}
             width="40"
           /> */}
-        <span className="inline-block p-2 rounded-full bg-slate-200 cursor-pointe">
-          <User size={20} />
-        </span>
-        <h1 className="text-lg font-semibold">Name</h1>
+        <Link to="/dashboard" className="flex items-center gap-2">
+          <span className="inline-block p-2 rounded-full bg-slate-200 cursor-pointe">
+            <User size={20} />
+          </span>
+          <h1 className="text-lg font-semibold">Dashboard</h1>
+        </Link>
       </div>
       <nav className="dashboardNavLinks mt-4">
         <DashboardLinks />

@@ -25,7 +25,7 @@ import { userLoggedIn, userLoggedOut } from "./features/auth/authSlice";
 
 function App() {
   const [authCheck, setAuthCheck] = useState(false);
-  const { _id } = useSelector((state) => state.user);
+  const { _id, role } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -89,22 +89,27 @@ function App() {
               </DashboardLayout>
             }
           />
-          <Route
-            path="products"
-            element={
-              <DashboardLayout>
-                <Products />
-              </DashboardLayout>
-            }
-          />
-          <Route
-            path="categories"
-            element={
-              <DashboardLayout>
-                <Categories />
-              </DashboardLayout>
-            }
-          />
+          {role === "admin" && (
+            <>
+              {" "}
+              <Route
+                path="products"
+                element={
+                  <DashboardLayout>
+                    <Products />
+                  </DashboardLayout>
+                }
+              />
+              <Route
+                path="categories"
+                element={
+                  <DashboardLayout>
+                    <Categories />
+                  </DashboardLayout>
+                }
+              />
+            </>
+          )}
           <Route
             path="payments"
             element={
