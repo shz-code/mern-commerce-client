@@ -6,6 +6,7 @@ const initialState = {
   exp: undefined,
   role: undefined,
   token: undefined,
+  photo: undefined,
 };
 
 const authSlice = createSlice({
@@ -18,6 +19,7 @@ const authSlice = createSlice({
       state.exp = new Date().getTime() + action.payload.exp * 1000;
       state.role = action.payload.role;
       state.token = action.payload.token;
+      state.photo = action.payload.photo;
     },
     userLoggedOut: (state) => {
       state.username = undefined;
@@ -25,6 +27,7 @@ const authSlice = createSlice({
       state.exp = undefined;
       state.role = undefined;
       state.token = undefined;
+      state.photo = undefined;
       // Remove local storage
       localStorage.removeItem("auth");
       localStorage.removeItem("token");

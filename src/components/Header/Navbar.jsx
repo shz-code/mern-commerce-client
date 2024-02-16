@@ -1,7 +1,10 @@
 import { Menu, ShoppingCart, User } from "lucide-react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import NavLinks from "./NavLinks";
 const Navbar = ({ mobileNavOpen, setMobileNavOpen, setCartOpen }) => {
+  const { photo } = useSelector((state) => state.user);
+
   const handleMobileNavigation = () => {
     if (mobileNavOpen) setMobileNavOpen(false);
     else setMobileNavOpen(true);
@@ -25,7 +28,17 @@ const Navbar = ({ mobileNavOpen, setMobileNavOpen, setCartOpen }) => {
                   to="/dashboard"
                   className="inline-block p-2 rounded-full bg-slate-200 cursor-pointe"
                 >
-                  <User size={20} />
+                  {photo != undefined && photo != "none" ? (
+                    <div className="w-6">
+                      <img
+                        src={photo}
+                        className="rounded-full"
+                        alt="Profile Picture"
+                      />
+                    </div>
+                  ) : (
+                    <User size={20} />
+                  )}
                 </Link>
                 {/* <div className="dashboardModal">Dashboard</div> */}
               </div>

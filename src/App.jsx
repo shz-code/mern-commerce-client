@@ -15,6 +15,7 @@ import Products from "./components/Dashboard/Products/Products";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import SocialAuth from "./components/Auth/SocialAuth";
 import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Checkout/Checkout";
 import { Home } from "./components/Home/Home";
@@ -31,7 +32,7 @@ function App() {
   useEffect(() => {
     const auth = localStorage.getItem("auth");
     if (auth) {
-      const { exp, username, _id, role } = JSON.parse(auth);
+      const { exp, username, _id, role, photo } = JSON.parse(auth);
       if (new Date(exp) > new Date()) {
         const { token } = JSON.parse(localStorage.getItem("token"));
         dispatch(
@@ -41,6 +42,7 @@ function App() {
             role: role,
             exp: exp,
             token: token,
+            photo: photo,
           })
         );
       } else {
@@ -60,7 +62,7 @@ function App() {
       <Route path="/cart" element={<Cart />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/product/:id" element={<ProductDetails />} />
-      <Route path="/product/:id" element={<ProductDetails />} />
+      <Route path="/auth" element={<SocialAuth />} />
       <Route path="*" element={<Navigate to="login" replace />} />
     </Routes>
   );

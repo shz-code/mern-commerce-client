@@ -111,12 +111,14 @@ const Login = () => {
                       type="submit"
                     />
                   </div>
-                  <div className="pb-2">
-                    <Button
-                      className="w-full rounded bg-white text-black border-2 border-slate-200 hover:bg-slate-200"
-                      title="Login with Google"
-                      type="submit"
-                    />
+                  <div className="space-y-2 mt-2">
+                    <Link to={`${import.meta.env.VITE_API_URL}/auth/google`}>
+                      <Button
+                        className="w-full rounded bg-white text-black border-2 border-slate-200 hover:bg-slate-200"
+                        title="Use Google Auth"
+                        type="button"
+                      />
+                    </Link>
                   </div>
                 </div>
                 <div className="mt-4 text-center text-sm">

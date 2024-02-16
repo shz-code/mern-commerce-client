@@ -15,13 +15,14 @@ export const authApi = apiSlice.injectEndpoints({
         try {
           const res = await queryFulfilled;
           const decoded = jwtDecode(res.data.token);
-          const { _id, username, role, exp } = decoded;
+          const { _id, username, role, exp, photo } = decoded;
           localStorage.setItem(
             "auth",
             JSON.stringify({
               username: username,
               role: role,
               _id: _id,
+              photo: photo,
               exp: exp * 1000,
             })
           );
@@ -36,6 +37,7 @@ export const authApi = apiSlice.injectEndpoints({
               username: username,
               role: role,
               _id: _id,
+              photo: photo,
               exp: exp * 1000,
               token: res.data.token,
             })
@@ -56,7 +58,7 @@ export const authApi = apiSlice.injectEndpoints({
         try {
           const res = await queryFulfilled;
           const decoded = jwtDecode(res.data.token);
-          const { _id, username, role, exp } = decoded;
+          const { _id, username, role, exp, photo } = decoded;
           localStorage.setItem(
             "auth",
             JSON.stringify({
@@ -64,6 +66,7 @@ export const authApi = apiSlice.injectEndpoints({
               role: role,
               _id: _id,
               exp: exp * 1000,
+              photo: photo,
             })
           );
           localStorage.setItem(
@@ -79,6 +82,7 @@ export const authApi = apiSlice.injectEndpoints({
               _id: _id,
               exp: exp * 1000,
               token: res.data.token,
+              photo: photo,
             })
           );
           toast.success("Registration Successful");
