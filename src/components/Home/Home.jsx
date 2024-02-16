@@ -31,7 +31,7 @@ export const Home = () => {
             Featured Products
           </h2>
           <div className="mt-8">
-            <ProductsGrid lodeMoreHidden />
+            <ProductsGrid lodeMoreHidden query="order=desc&sort=price" />
           </div>
         </div>
       </section>

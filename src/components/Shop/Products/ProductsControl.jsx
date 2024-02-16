@@ -1,10 +1,17 @@
+import { useDispatch } from "react-redux";
+import { updateSort } from "../../../features/filter/filterSlice";
 import Select from "../../ui/Select";
 
 const ProductsControl = () => {
+  const dispatch = useDispatch();
   const selectItem = [
     {
       value: "default",
       label: "Default",
+    },
+    {
+      value: "top_sell",
+      label: "Best Selling",
     },
     {
       value: "asc",
@@ -17,7 +24,10 @@ const ProductsControl = () => {
   ];
   return (
     <div className="flex justify-end">
-      <Select selectItem={selectItem} />
+      <Select
+        selectItem={selectItem}
+        handleChange={(e) => dispatch(updateSort(e.target.value))}
+      />
     </div>
   );
 };

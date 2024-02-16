@@ -6,7 +6,7 @@ export const ProductCard = ({ product }) => {
   const { _id, name, price, description, quantity, category } = product;
   return (
     <div className="listRoomCard grid gap-2 bg-slate-100 p-2 rounded-md mb-4 relative break-inside-avoid">
-      <Link to={`/product/${_id}`} className="h-50">
+      <Link to={`/product/${_id}`} className="h-52">
         <img
           src={`${import.meta.env.VITE_API_URL}/product/photo/${_id}`}
           alt={name}

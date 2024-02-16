@@ -1,5 +1,10 @@
-import { Search } from "lucide-react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  reset,
+  setQuery,
+  updateSearch,
+} from "../../../features/filter/filterSlice";
 import Input from "../../ui/Input";
 import CategoryFilter from "./CategoryFilter";
 import PriceFilters from "./PriceFilters";
@@ -8,18 +13,28 @@ const Sidebar = () => {
   const [showCategories, setShowCategories] = useState(true);
   const [showPricesFilter, setShowPricesFilter] = useState(true);
 
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    dispatch(updateSearch(e.target.value));
+  };
+
   return (
     <>
       <div className="filterHeader flex justify-between items-center">
         <p className="font-semibold">Filters</p>
-        <span className="text-slate-500 text-xs cursor-pointer">Clear all</span>
+        <span
+          className="text-slate-500 text-xs cursor-pointer"
+          onClick={() => dispatch(reset())}
+        >
+          Clear all
+        </span>
       </div>
       <div className="filterInput py-2">
         <Input
           className="text-black focus:ring-slate-600 shadow-none"
           placeholder="Search Products ... "
-          clickAble
-          icon={<Search size={15} />}
+          onChange={handleChange}
         />
       </div>
       {/* Category Filters */}
@@ -36,6 +51,12 @@ const Sidebar = () => {
           setShowPricesFilter={setShowPricesFilter}
         />
       </div>
+      <span
+        className="text-xs flex justify-end mt-2 cursor-pointer underline font-semibold"
+        onClick={() => dispatch(setQuery())}
+      >
+        Filter
+      </span>
     </>
   );
 };

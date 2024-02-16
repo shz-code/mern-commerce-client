@@ -10,7 +10,7 @@ const Shop = () => {
         </div>
         <div className="container mx-auto px-2 pb-8">
           <div className="sm:flex gap-8">
-            <div className="sm:max-w-[300px] w-full h-fit sticky top-2 bg-white p-4 rounded-sm">
+            <div className="sm:max-w-[300px] w-full h-fit sm:sticky top-2 bg-white p-4 rounded-sm">
               <Sidebar />
             </div>
             <div className="w-full mt-6 sm:mt-0">

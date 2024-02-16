@@ -1,7 +1,13 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { addMaxPrice, addMinPrice } from "../../../features/filter/filterSlice";
 import Input from "../../ui/Input";
 
 const PriceFilters = ({ showPricesFilter, setShowPricesFilter }) => {
+  const dispatch = useDispatch();
+
+  const { priceRange } = useSelector((state) => state.filter);
+
   return (
     <>
       <div
@@ -20,19 +26,22 @@ const PriceFilters = ({ showPricesFilter, setShowPricesFilter }) => {
               <Input
                 className="text-black focus:ring-slate-600 shadow-none"
                 placeholder="From"
+                value={priceRange[0]}
+                onChange={(e) => {
+                  dispatch(addMinPrice(Number(e.target.value)));
+                }}
               />
               <Input
                 className="text-black focus:ring-slate-600 shadow-none"
                 placeholder="To"
+                value={priceRange[1]}
+                onChange={(e) => {
+                  dispatch(addMaxPrice(Number(e.target.value)));
+                }}
               />
             </>
           )}
         </div>
-        {showPricesFilter && (
-          <span className="text-xs flex justify-end mt-2 cursor-pointer underline font-semibold">
-            Filter
-          </span>
-        )}
       </div>
     </>
   );

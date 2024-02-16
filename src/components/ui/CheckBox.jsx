@@ -6,9 +6,10 @@ const CheckBox = ({ id, label, className, selected, ...rest }) => {
       <input
         id={id}
         type="checkbox"
-        defaultChecked={selected}
+        checked={selected}
         className={twMerge("w-4 h-4 accent-slate-900", className)}
         {...rest}
+        onChange={() => {}}
       />
 
       <label

@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   search: "",
-  selectedRoomFacilities: [],
+  categories: [],
+  priceRange: [1, 50000],
   sort: "default",
   page: 1,
   limit: 3,
+  query: "",
 };
 
 const filterSlice = createSlice({
@@ -18,21 +20,37 @@ const filterSlice = createSlice({
     updateSort: (state, action) => {
       state.sort = action.payload;
     },
-    updatePage: (state, action) => {
-      state.page = action.payload;
+    updatePage: (state) => {
+      state.page = state.page + 1;
     },
-    initiateSelectedRoomFacilities: (state, action) => {
-      state.selectedRoomFacilities = action.payload;
+    initiateCategories: (state, action) => {
+      state.categories = action.payload;
     },
-    addSelectedRoomFacilities: (state, action) => {
-      state.selectedRoomFacilities = state.selectedRoomFacilities.concat(
-        action.payload
+    addCategories: (state, action) => {
+      state.categories = state.categories.concat(action.payload);
+    },
+    removeCategories: (state, action) => {
+      state.categories = state.categories.filter(
+        (item) => item !== action.payload
       );
     },
-    removeSelectedRoomFacilities: (state, action) => {
-      state.selectedRoomFacilities = state.selectedRoomFacilities.filter(
-        (item) => item._id !== action.payload
-      );
+    addMinPrice: (state, action) => {
+      state.priceRange[0] = action.payload;
+    },
+    addMaxPrice: (state, action) => {
+      state.priceRange[1] = action.payload;
+    },
+    // limit=1&min=1&max=50000&skip=0&category=["65cf8d46ae3c6928ced6828a"]
+    setQuery: (state) => {
+      state.query = ``;
+    },
+    reset: (state) => {
+      state.search = "";
+      state.categories = [];
+      state.priceRange = [1, 50000];
+      state.sort = "default";
+      state.page = 1;
+      state.limit = 3;
     },
   },
 });
@@ -42,7 +60,11 @@ export const {
   updateSearch,
   updateSort,
   updatePage,
-  addSelectedRoomFacilities,
-  removeSelectedRoomFacilities,
-  initiateSelectedRoomFacilities,
+  addCategories,
+  removeCategories,
+  initiateCategories,
+  addMaxPrice,
+  addMinPrice,
+  setQuery,
+  reset,
 } = filterSlice.actions;

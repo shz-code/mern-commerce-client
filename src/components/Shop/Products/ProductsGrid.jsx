@@ -1,11 +1,17 @@
+import { useDispatch } from "react-redux";
+import { updatePage } from "../../../features/filter/filterSlice";
 import { useGetProductsQuery } from "../../../features/products/productsApi";
 import Button from "../../ui/Button";
 import Error from "../../ui/Error";
 import Loader from "../../ui/Loader";
 import { ProductCard } from "./ProductCard";
 
-const ProductsGrid = ({ lodeMoreHidden }) => {
-  const { data, isLoading, isError, error } = useGetProductsQuery();
+const ProductsGrid = ({ query, lodeMoreHidden }) => {
+  const { data, isLoading, isError, error } = useGetProductsQuery(query, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  const dispatch = useDispatch();
 
   let content = null;
   if (isLoading) content = <Loader />;
@@ -17,7 +23,7 @@ const ProductsGrid = ({ lodeMoreHidden }) => {
 
   return (
     <>
-      <div className="md:columns-2 lg:columns-3 xl:columns-4 gap-4">
+      <div className="columns-2 sm:columns-1 md:columns-2 xl:columns-3 gap-4">
         {content}
       </div>
       <div className="flex justify-center mt-4">
@@ -25,6 +31,7 @@ const ProductsGrid = ({ lodeMoreHidden }) => {
           <Button
             className="bg-transparent text-black border border-slate-800 hover:bg-slate-100 text-sm px-2 py-1"
             title="Load More"
+            onClick={() => dispatch(updatePage())}
           />
         )}
       </div>
