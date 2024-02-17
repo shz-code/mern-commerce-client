@@ -10,7 +10,6 @@ const Products = () => {
   useEffect(() => {
     if (persistQuery != query) {
       setPersistQuery(query);
-      console.log(query);
     }
   }, [query, persistQuery]);
 
@@ -18,9 +17,7 @@ const Products = () => {
     <div>
       <ProductsControl />
       <div className="py-4">
-        <ProductsGrid
-          query={`limit=1&min=1&max=50000&skip=0&category=["65cf8d46ae3c6928ced6828a"]`}
-        />
+        <ProductsGrid query={query} />
       </div>
     </div>
   );

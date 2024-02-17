@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { updatePage } from "../../../features/filter/filterSlice";
+import { updateSkip } from "../../../features/filter/filterSlice";
 import { useGetProductsQuery } from "../../../features/products/productsApi";
 import Button from "../../ui/Button";
 import Error from "../../ui/Error";
@@ -31,7 +31,7 @@ const ProductsGrid = ({ query, lodeMoreHidden }) => {
           <Button
             className="bg-transparent text-black border border-slate-800 hover:bg-slate-100 text-sm px-2 py-1"
             title="Load More"
-            onClick={() => dispatch(updatePage())}
+            onClick={() => dispatch(updateSkip())}
           />
         )}
       </div>

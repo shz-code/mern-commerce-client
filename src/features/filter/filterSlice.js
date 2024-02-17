@@ -1,12 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const makeQuery = (state, action) => {
+  let query = "";
+  // Sort and Order query
+  if (state.sort === "top_sell") {
+    query += "&sort=sale&order=desc";
+  } else if (state.sort != "default") {
+    query += `&sort=price&order=${state.sort}`;
+  }
+  // min max query
+  if (query.length)
+    query += `&min=${state.priceRange[0]}&max=${state.priceRange[1]}`;
+  else query += `min=${state.priceRange[0]}&max=${state.priceRange[1]}`;
+
+  if (action.type === "filter/updateSkip") {
+    query += `&limit=${state.skip + state.limit}`;
+  }
+
+  if (state.categories.length > 0) {
+    query += `&category=[${state.categories.map((ct) => `"${ct}"`)}]`;
+  }
+  if (state.search) {
+    query += `&search=${state.search}`;
+  }
+  return query;
+};
+
 const initialState = {
   search: "",
   categories: [],
   priceRange: [1, 50000],
   sort: "default",
-  page: 1,
-  limit: 3,
+  skip: 1,
+  limit: 1,
   query: "",
 };
 
@@ -20,8 +46,10 @@ const filterSlice = createSlice({
     updateSort: (state, action) => {
       state.sort = action.payload;
     },
-    updatePage: (state) => {
-      state.page = state.page + 1;
+    updateSkip: (state, action) => {
+      let query = makeQuery(state, action);
+      state.skip = state.skip + state.limit;
+      state.query = query;
     },
     initiateCategories: (state, action) => {
       state.categories = action.payload;
@@ -41,8 +69,9 @@ const filterSlice = createSlice({
       state.priceRange[1] = action.payload;
     },
     // limit=1&min=1&max=50000&skip=0&category=["65cf8d46ae3c6928ced6828a"]
-    setQuery: (state) => {
-      state.query = ``;
+    setQuery: (state, action) => {
+      let query = makeQuery(state, action);
+      state.query = query;
     },
     reset: (state) => {
       state.search = "";
@@ -59,7 +88,7 @@ export default filterSlice.reducer;
 export const {
   updateSearch,
   updateSort,
-  updatePage,
+  updateSkip,
   addCategories,
   removeCategories,
   initiateCategories,
