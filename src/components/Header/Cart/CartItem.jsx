@@ -13,7 +13,10 @@ const CartItem = ({ product }) => {
       </div>
       <div className="px-4 pb-4 flex justify-between items-center">
         <Link to={`/product/`} className="h-20 w-20">
-          <img src={`${import.meta.env.VITE_API_URL}/product/photo/${_id}`} />
+          <img
+            src={`${import.meta.env.VITE_API_URL}/product/photo/${_id}`}
+            alt={name}
+          />
         </Link>
         <div className="gap-2 text-xs w-1/2">
           <p className="border-b pb-2 text-end">

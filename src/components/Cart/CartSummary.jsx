@@ -1,7 +1,31 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useGetProfileQuery } from "../../features/profile/profileApi";
 import Button from "../ui/Button";
+import Loader from "../ui/Loader";
 
-const CartSummary = () => {
+const CartSummary = ({ total }) => {
+  const { _id } = useSelector((state) => state.user);
+
+  const { data, isLoading, isError } = useGetProfileQuery(_id);
+
+  let content = null;
+  if (isLoading) content = <Loader />;
+  else if (!isLoading && !isError)
+    content = (
+      <>
+        <span>Standard shipping</span>
+        {data.city === "none" ? (
+          "Not Selected"
+        ) : (
+          <span>Shipping to {data.city}</span>
+        )}
+        <span className="underline cursor-pointer">
+          <Link to="/dashboard">Change address</Link>
+        </span>
+      </>
+    );
+
   return (
     <>
       {/* Cart Summary */}
@@ -12,19 +36,15 @@ const CartSummary = () => {
         <div className="border-b py-4">
           <div className="flex justify-between items-center px-4 text-xs">
             <p>Shipping</p>
-            <div className="flex flex-col items-end gap-2">
-              <span>Standard shipping</span>
-              Shipping to ....
-              <span className="underline cursor-pointer">
-                <Link to="/dashboard">Change address</Link>
-              </span>
-            </div>
+            <div className="flex flex-col items-end gap-2">{content}</div>
           </div>
         </div>
         <div className="flex justify-between items-center px-4 py-4 text-xs">
           <p className="text-xl font-semibold">Total</p>
           <div className="flex flex-col items-end gap-2">
-            <span className="text-slate-800 text-2xl font-extrabold">120৳</span>
+            <span className="text-slate-800 text-2xl font-extrabold">
+              {total}৳
+            </span>
           </div>
         </div>
         <div className="px-4 pb-4">
