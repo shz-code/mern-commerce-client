@@ -1,6 +1,8 @@
 import { Tag } from "lucide-react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useUpdateCartMutation } from "../../../features/cart/cartApi";
+import { toggleCartSlideOpen } from "../../../features/utility/utilitySlice";
 import Button from "../../ui/Button";
 
 export const ProductCard = ({ product }) => {
@@ -8,12 +10,15 @@ export const ProductCard = ({ product }) => {
 
   const [updateCart, { isLoading }] = useUpdateCartMutation();
 
+  const dispatch = useDispatch();
+
   const handleClick = async () => {
     await updateCart({
       product: _id,
       price: price,
       name: name,
     });
+    dispatch(toggleCartSlideOpen());
   };
 
   return (

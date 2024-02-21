@@ -1,17 +1,21 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toggleCartSlideOpen } from "../../../features/utility/utilitySlice";
 import Button from "../../ui/Button";
 import CartItemList from "./CartItemList";
 
-const Cart = ({ setCartOpen, cartOpen }) => {
+const Cart = () => {
   const { _id } = useSelector((state) => state.user);
+  const { cartSlideOpen } = useSelector((state) => state.utility);
+  const dispatch = useDispatch();
   const handleClick = (e) => {
-    if (e.target.classList.contains("cartOpen")) setCartOpen(false);
+    if (e.target.classList.contains("cartOpen"))
+      dispatch(toggleCartSlideOpen());
   };
   return (
     <div
       className={`bg-slate-200/10 backdrop-blur fixed top-0 right-0 h-full w-full transition-all z-10 ${
-        cartOpen ? "translate-x-0" : "translate-x-full"
+        cartSlideOpen ? "translate-x-0" : "translate-x-full"
       }`}
       onClick={(e) => handleClick(e)}
     >
@@ -27,7 +31,7 @@ const Cart = ({ setCartOpen, cartOpen }) => {
                 <Link to="/cart">
                   <Button
                     title="Go to cart"
-                    onClick={() => setCartOpen(false)}
+                    onClick={() => dispatch(toggleCartSlideOpen())}
                     className="w-full bg-slate-100 text-black hover:bg-slate-200"
                   />
                 </Link>
@@ -35,7 +39,7 @@ const Cart = ({ setCartOpen, cartOpen }) => {
                   <Button
                     className="w-full mt-2"
                     title="Go to checkout"
-                    onClick={() => setCartOpen(false)}
+                    onClick={() => dispatch(toggleCartSlideOpen())}
                   />
                 </Link>
               </>
@@ -43,7 +47,7 @@ const Cart = ({ setCartOpen, cartOpen }) => {
               <Link to="/login">
                 <Button
                   title="Login to view cart"
-                  onClick={() => setCartOpen(false)}
+                  onClick={() => dispatch(toggleCartSlideOpen())}
                   className="w-full bg-slate-100 text-black hover:bg-slate-200"
                 />
               </Link>

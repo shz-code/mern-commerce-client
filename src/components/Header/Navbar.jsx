@@ -1,11 +1,13 @@
 import { Menu, ShoppingCart, User } from "lucide-react";
 import { useCallback, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useGetCartQuery } from "../../features/cart/cartApi";
+import { toggleCartSlideOpen } from "../../features/utility/utilitySlice";
 import NavLinks from "./NavLinks";
-const Navbar = ({ mobileNavOpen, setMobileNavOpen, setCartOpen }) => {
+const Navbar = ({ mobileNavOpen, setMobileNavOpen }) => {
   const { photo } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const { data, isLoading } = useGetCartQuery();
 
@@ -61,7 +63,7 @@ const Navbar = ({ mobileNavOpen, setMobileNavOpen, setCartOpen }) => {
               <span
                 className="cursor-pointer relative"
                 onClick={() => {
-                  setCartOpen(true);
+                  dispatch(toggleCartSlideOpen());
                 }}
               >
                 <ShoppingCart size={20} />

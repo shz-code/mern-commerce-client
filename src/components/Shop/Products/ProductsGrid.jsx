@@ -6,7 +6,7 @@ import Error from "../../ui/Error";
 import Loader from "../../ui/Loader";
 import { ProductCard } from "./ProductCard";
 
-const ProductsGrid = ({ query, lodeMoreHidden }) => {
+const ProductsGrid = ({ query, lodeMoreHidden, mini = false }) => {
   const { data, isLoading, isError, error } = useGetProductsQuery(query, {
     refetchOnMountOrArgChange: true,
   });
@@ -23,7 +23,11 @@ const ProductsGrid = ({ query, lodeMoreHidden }) => {
 
   return (
     <>
-      <div className="columns-2 sm:columns-1 md:columns-2 xl:columns-3 gap-4">
+      <div
+        className={`columns-2 sm:columns-1  gap-4 ${
+          mini ? "md:columns-4 xl:columns-5" : "md:columns-2 xl:columns-3"
+        }`}
+      >
         {content}
       </div>
       <div className="flex justify-center mt-4">
