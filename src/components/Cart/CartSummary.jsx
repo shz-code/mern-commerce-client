@@ -49,7 +49,11 @@ const CartSummary = ({ total }) => {
         </div>
         <div className="px-4 pb-4">
           <Link to="/checkout">
-            <Button className="w-full" title="Proceed to checkout" />
+            <Button
+              className="w-full"
+              title="Proceed to checkout"
+              disabled={!total}
+            />
           </Link>
         </div>
       </div>

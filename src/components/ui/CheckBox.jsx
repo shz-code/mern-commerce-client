@@ -1,6 +1,13 @@
 import { twMerge } from "tailwind-merge";
 
-const CheckBox = ({ id, label, className, selected, ...rest }) => {
+const CheckBox = ({
+  id,
+  label,
+  className,
+  selected,
+  onChange = () => {},
+  ...rest
+}) => {
   return (
     <div className="flex items-center w-full  px-2 py-1 rounded-sm">
       <input
@@ -9,7 +16,7 @@ const CheckBox = ({ id, label, className, selected, ...rest }) => {
         checked={selected}
         className={twMerge("w-4 h-4 accent-slate-900", className)}
         {...rest}
-        onChange={() => {}}
+        onChange={onChange}
       />
 
       <label

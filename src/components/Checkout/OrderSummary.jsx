@@ -1,8 +1,24 @@
 import { TicketCheck } from "lucide-react";
+import { useGetCartQuery } from "../../features/cart/cartApi";
 import Button from "../ui/Button";
+import Error from "../ui/Error";
 import Input from "../ui/Input";
+import Loader from "../ui/Loader";
+import OrderItemCard from "./OrderItemCard";
 
 const OrderSummary = () => {
+  const { data, isError, isLoading, error } = useGetCartQuery();
+
+  let content = null;
+  if (isLoading) content = <Loader />;
+  else if (!isLoading && isError) content = <Error message={error.data} />;
+  else if (!isLoading && !isError && !data.price)
+    content = <Error message="Nothing in Cart" />;
+  else if (!isLoading && !isError && data.price)
+    content = data.products.map((item) => (
+      <OrderItemCard key={item._id} product={item} />
+    ));
+
   return (
     <div className="sticky top-2">
       <h4 className="font-semibold text-lg hidden md:block">Your Order</h4>
@@ -13,31 +29,23 @@ const OrderSummary = () => {
           <p>Subtotal</p>
         </div>
         {/* Items Container */}
-        <div className="flex items-center justify-between border-b px-4 py-4">
-          <div className="w-16">
-            <img
-              src="https://erabanbd.com/wp-content/uploads/2024/01/qcy-watch-gt.png"
-              alt=""
-            />
-          </div>
-          <span>QCY Watch</span>
-          <span>x 1</span>
-          <span>120৳</span>
-        </div>
+        <div>{content}</div>
         {/* Subtotal */}
         <div className="flex justify-between border-b p-4">
           <p>Subtotal</p>
-          <p>120৳</p>
+          <p>{data?.price}৳</p>
         </div>
         {/* Shipping */}
         <div className="flex justify-between border-b p-4">
           <p>Shipping</p>
-          <p>100৳</p>
+          <p>120৳ (Standard)</p>
         </div>
         {/* Total */}
         <div className="flex justify-between border-b p-4 font-semibold">
           <p className="text-xl">Total</p>
-          <p className="text-2xl font-extrabold">220৳</p>
+          <p className="text-2xl font-extrabold">
+            {data?.price ? data.price + 120 : 0}৳
+          </p>
         </div>
       </div>
       {/* Coupon */}
