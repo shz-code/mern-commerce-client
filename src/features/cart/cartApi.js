@@ -27,7 +27,28 @@ const cartApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    removeCart: builder.mutation({
+      query: (body) => ({
+        url: "cart",
+        method: "PUT",
+        body: body,
+      }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        try {
+          const res = await queryFulfilled;
+          dispatch(
+            apiSlice.util.updateQueryData("getCart", undefined, () => {
+              return res.data.data;
+            })
+          );
+          toast.success(res.data.message);
+        } catch (err) {
+          toast.error(err.error.data);
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetCartQuery, useUpdateCartMutation } = cartApi;
+export const { useGetCartQuery, useUpdateCartMutation, useRemoveCartMutation } =
+  cartApi;
