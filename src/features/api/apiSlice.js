@@ -17,11 +17,12 @@ const apiSlice = createApi({
   baseQuery: async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions);
 
-    if (result?.error?.originalStatus === 401) {
+    if (result?.error?.originalStatus === 403) {
       api.dispatch(userLoggedOut());
     }
     return result;
   },
+  tagTypes: ["Cart"],
   endpoints: () => ({}),
 });
 

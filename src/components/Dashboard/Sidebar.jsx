@@ -2,6 +2,7 @@ import { LogOut, User } from "lucide-react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import apiSlice from "../../features/api/apiSlice";
 import { userLoggedOut } from "../../features/auth/authSlice";
 import DashboardLinks from "./DashboardLinks";
 
@@ -34,6 +35,7 @@ const Sidebar = () => {
           className="border cursor-pointer"
           onClick={() => {
             dispatch(userLoggedOut());
+            dispatch(apiSlice.util.resetApiState());
             toast.success("Logged Out");
           }}
         >

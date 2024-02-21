@@ -1,9 +1,21 @@
 import { Tag } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useUpdateCartMutation } from "../../../features/cart/cartApi";
 import Button from "../../ui/Button";
 
 export const ProductCard = ({ product }) => {
   const { _id, name, price, description, quantity, category } = product;
+
+  const [updateCart, { isLoading }] = useUpdateCartMutation();
+
+  const handleClick = async () => {
+    await updateCart({
+      product: _id,
+      price: price,
+      name: name,
+    });
+  };
+
   return (
     <div className="listRoomCard grid gap-2 bg-slate-100 p-2 rounded-md mb-4 relative break-inside-avoid">
       <Link to={`/product/${_id}`} className="h-52">
@@ -48,7 +60,12 @@ export const ProductCard = ({ product }) => {
         {/* Card Footer */}
         <div className="card-footer sm:flex justify-between items-center border-t mt-4 pt-2">
           {quantity > 0 ? (
-            <Button title="Add to cart" />
+            <Button
+              title="Add to cart"
+              onClick={handleClick}
+              disabled={isLoading}
+              loading={isLoading}
+            />
           ) : (
             <Button
               title="Not in stock"

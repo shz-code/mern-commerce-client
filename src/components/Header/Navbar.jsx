@@ -1,14 +1,30 @@
 import { Menu, ShoppingCart, User } from "lucide-react";
+import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useGetCartQuery } from "../../features/cart/cartApi";
 import NavLinks from "./NavLinks";
 const Navbar = ({ mobileNavOpen, setMobileNavOpen, setCartOpen }) => {
   const { photo } = useSelector((state) => state.user);
+
+  const { data, isLoading } = useGetCartQuery();
 
   const handleMobileNavigation = () => {
     if (mobileNavOpen) setMobileNavOpen(false);
     else setMobileNavOpen(true);
   };
+
+  const calcCartItemsCount = useCallback(() => {
+    if (!isLoading && data && data.price) {
+      return data.products.reduce((a, b) => a + b.quantity, 0);
+    }
+    return 0;
+  }, [isLoading, data]);
+
+  useEffect(() => {
+    calcCartItemsCount();
+  }, [calcCartItemsCount]);
+
   return (
     <div className="bg-slate-50">
       <div className="container mx-auto px-2">
@@ -43,12 +59,15 @@ const Navbar = ({ mobileNavOpen, setMobileNavOpen, setCartOpen }) => {
                 {/* <div className="dashboardModal">Dashboard</div> */}
               </div>
               <span
-                className="cursor-pointer"
+                className="cursor-pointer relative"
                 onClick={() => {
                   setCartOpen(true);
                 }}
               >
                 <ShoppingCart size={20} />
+                <span className="absolute -top-2 -right-2 px-1 text-xs text-white rounded-full bg-slate-800">
+                  {calcCartItemsCount()}
+                </span>
               </span>
               <div
                 className="block sm:hidden cursor-pointer"

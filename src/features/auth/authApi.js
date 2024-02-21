@@ -42,6 +42,9 @@ export const authApi = apiSlice.injectEndpoints({
               token: res.data.token,
             })
           );
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
           toast.success("Login Successful");
         } catch (err) {
           toast.error(err.error.data);

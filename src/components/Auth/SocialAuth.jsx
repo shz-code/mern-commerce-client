@@ -46,6 +46,9 @@ const SocialAuth = () => {
         })
       );
       toast.success("Login Successful");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
     if (Number(status) === 400) {
       toast.error(msg);

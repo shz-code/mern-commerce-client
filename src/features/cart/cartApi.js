@@ -1,9 +1,11 @@
+import toast from "react-hot-toast";
 import apiSlice from "../api/apiSlice";
 
 const cartApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getCart: builder.query({
-      query: () => "category",
+      query: () => "cart",
+      providesTags: () => ["Cart"],
     }),
     updateCart: builder.mutation({
       query: (body) => ({
@@ -11,6 +13,19 @@ const cartApi = apiSlice.injectEndpoints({
         method: "POST",
         body: body,
       }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        try {
+          const res = await queryFulfilled;
+          dispatch(
+            apiSlice.util.updateQueryData("getCart", undefined, () => {
+              return res.data.data;
+            })
+          );
+          toast.success(res.data.message);
+        } catch (err) {
+          toast.error(err.error.data);
+        }
+      },
     }),
   }),
 });
