@@ -1,13 +1,48 @@
+import { Formik } from "formik";
 import { TicketCheck } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useGetCartQuery } from "../../features/cart/cartApi";
+import { useCheckMutation } from "../../features/coupon/couponApi";
 import Button from "../ui/Button";
 import Error from "../ui/Error";
 import Input from "../ui/Input";
 import Loader from "../ui/Loader";
 import OrderItemCard from "./OrderItemCard";
 
-const OrderSummary = () => {
+const validate = (values) => {
+  const errors = {};
+  if (!values.couponName) {
+    errors.couponName = "Coupon missing";
+  }
+  if (values.couponName.includes(" ")) {
+    errors.couponName = "Can not contain (space) in name";
+  }
+  return errors;
+};
+
+const OrderSummary = ({ coupon, setCoupon }) => {
+  const [cartProducts, setCartProducts] = useState([]); // All the product ids that are in cart
+  const [dataSet, setDataSet] = useState(false); // Set to true once the products array is set
+
   const { data, isError, isLoading, error } = useGetCartQuery();
+  const [check] = useCheckMutation();
+
+  const initCartProducts = useCallback(() => {
+    if (!isError && !isLoading && dataSet) {
+      data.products.map((item) => {
+        if (!cartProducts.includes(item.product)) {
+          setCartProducts((prev) => [...prev, item.product]);
+        }
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading, isError, data, dataSet]);
+
+  useEffect(() => {
+    initCartProducts();
+    setDataSet(true);
+  }, [initCartProducts]);
 
   let content = null;
   if (isLoading) content = <Loader />;
@@ -35,6 +70,19 @@ const OrderSummary = () => {
           <p>Subtotal</p>
           <p>{data?.price}৳</p>
         </div>
+        {/* Coupon */}
+        {coupon.status && (
+          <div className="flex justify-between border-b p-4">
+            <p>Discount</p>
+            <p>
+              -
+              {coupon.data.discountType === "fixed"
+                ? coupon.data.discount
+                : (coupon.data.discount / 100) * data.price}
+              ৳ <b>({coupon.data.name})</b>
+            </p>
+          </div>
+        )}
         {/* Shipping */}
         <div className="flex justify-between border-b p-4">
           <p>Shipping</p>
@@ -44,21 +92,81 @@ const OrderSummary = () => {
         <div className="flex justify-between border-b p-4 font-semibold">
           <p className="text-xl">Total</p>
           <p className="text-2xl font-extrabold">
-            {data?.price ? data.price + 120 : 0}৳
+            {coupon.status
+              ? data?.price
+                ? data.price -
+                  (coupon.data.discountType === "fixed"
+                    ? coupon.data.discount
+                    : (coupon.data.discount / 100) * data.price) +
+                  120
+                : 0
+              : data?.price
+              ? data.price + 120
+              : 0}
+            ৳
           </p>
         </div>
       </div>
       {/* Coupon */}
-      <form action="" className="mt-4" onSubmit={() => alert("Hello")}>
-        <Input
-          className="py-2 rounded shadow-none bg-transparent border-2 border-slate-200 text-black"
-          icon={<TicketCheck size={15} />}
-          placeholder="Have a coupon?"
-        />
-        <div className="mt-2">
-          <Button className="w-full" title="Validate" />
-        </div>
-      </form>
+      {!coupon.status && (
+        <Formik
+          initialValues={{
+            couponName: "",
+          }}
+          validate={validate}
+          onSubmit={async (values, { setSubmitting }) => {
+            setSubmitting(true);
+            const res = await check({
+              coupon_name: values.couponName,
+              products: cartProducts,
+            });
+            if (res.data) {
+              if (res.data.status) {
+                setCoupon({ status: true, data: res.data.data });
+                toast.success(res.data.msg);
+              } else toast.error(res.data.msg);
+            } else {
+              toast.error(res.error.data);
+            }
+            setSubmitting(false);
+          }}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+            /* and other goodies */
+          }) => (
+            <form action="" className="mt-4" onSubmit={handleSubmit}>
+              <Input
+                className="py-2 rounded shadow-none bg-transparent border-2 border-slate-200 text-black"
+                icon={<TicketCheck size={15} />}
+                id="couponName"
+                placeholder="Have a coupon?"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.couponName}
+              />
+              <p className="text-xs text-red-400 font-bold">
+                {errors.couponName && touched.couponName && errors.couponName}
+              </p>
+              <div className="mt-2">
+                <Button
+                  className="w-full"
+                  title="Validate"
+                  type="submit"
+                  disabled={isSubmitting}
+                  loading={isSubmitting}
+                />
+              </div>
+            </form>
+          )}
+        </Formik>
+      )}
     </div>
   );
 };

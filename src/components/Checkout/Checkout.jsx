@@ -1,8 +1,11 @@
 import { Banknote } from "lucide-react";
+import { useState } from "react";
 import CheckoutForm from "./CheckoutForm";
 import OrderSummary from "./OrderSummary";
 
 const Checkout = () => {
+  const [coupon, setCoupon] = useState({ status: false, data: {} });
+
   return (
     <div className="container mx-auto px-2 py-8">
       <div className="border-t-4 border-slate-950 rounded bg-white px-4 md:px-8">
@@ -27,7 +30,7 @@ const Checkout = () => {
           {/* Form */}
           <CheckoutForm />
           <div className="orderSummary md:w-3/4 mb-4 md:mb-0">
-            <OrderSummary />
+            <OrderSummary coupon={coupon} setCoupon={setCoupon} />
           </div>
         </div>
       </div>
