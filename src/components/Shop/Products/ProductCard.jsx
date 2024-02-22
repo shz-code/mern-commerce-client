@@ -6,7 +6,7 @@ import { toggleCartSlideOpen } from "../../../features/utility/utilitySlice";
 import Button from "../../ui/Button";
 
 export const ProductCard = ({ product }) => {
-  const { _id, name, price, description, quantity, category } = product;
+  const { _id, name, price, description, quantity, category, sold } = product;
 
   const [updateCart, { isLoading }] = useUpdateCartMutation();
 
@@ -79,7 +79,7 @@ export const ProductCard = ({ product }) => {
             />
           )}
           <div className="flex gap-1 justify-center sm:justify-end mt-2 sm:mt-0">
-            <span className="font-bold">{quantity} Sold</span>
+            <span className="font-bold">{sold} Sold</span>
           </div>
         </div>
       </div>

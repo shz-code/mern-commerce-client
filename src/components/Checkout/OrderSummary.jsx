@@ -29,7 +29,7 @@ const OrderSummary = ({ coupon, setCoupon }) => {
   const [check] = useCheckMutation();
 
   const initCartProducts = useCallback(() => {
-    if (!isError && !isLoading && dataSet) {
+    if (!isError && !isLoading && dataSet && data.price) {
       data.products.map((item) => {
         if (!cartProducts.includes(item.product)) {
           setCartProducts((prev) => [...prev, item.product]);
@@ -80,6 +80,15 @@ const OrderSummary = ({ coupon, setCoupon }) => {
                 ? coupon.data.discount
                 : (coupon.data.discount / 100) * data.price}
               ৳ <b>({coupon.data.name})</b>
+              <span
+                className="text-xs underline ps-2 cursor-pointer"
+                onClick={() => {
+                  setCoupon({ status: false, data: {} });
+                  toast.success("Coupon Cleared");
+                }}
+              >
+                Clear
+              </span>
             </p>
           </div>
         )}

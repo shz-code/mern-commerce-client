@@ -28,7 +28,7 @@ const Checkout = () => {
         </div>
         <div className="checkoutBody py-8 flex flex-col-reverse md:flex-row gap-4">
           {/* Form */}
-          <CheckoutForm />
+          <CheckoutForm coupon={coupon} />
           <div className="orderSummary md:w-3/4 mb-4 md:mb-0">
             <OrderSummary coupon={coupon} setCoupon={setCoupon} />
           </div>

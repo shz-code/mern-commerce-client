@@ -1,5 +1,7 @@
 import { Formik } from "formik";
 import { useSelector } from "react-redux";
+import { useGetCartQuery } from "../../features/cart/cartApi";
+import { useOrderMutation } from "../../features/order/orderApi";
 import { useGetProfileQuery } from "../../features/profile/profileApi";
 import Button from "../ui/Button";
 import CheckBox from "../ui/CheckBox";
@@ -33,10 +35,13 @@ const validate = (values) => {
   return errors;
 };
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ coupon }) => {
   const { _id } = useSelector((state) => state.user);
 
   const { data, isError, isLoading } = useGetProfileQuery(_id);
+  const { data: cart } = useGetCartQuery();
+
+  const [order] = useOrderMutation();
 
   let content = null;
   if (isLoading) content = <Loader />;
@@ -50,6 +55,7 @@ const CheckoutForm = () => {
           address: address === "none" ? "" : address,
           state: state === "none" ? "" : state,
           city: city === "none" ? "" : city,
+          country: country,
           postcode: postcode,
           phone: user.phone === "none" ? "" : user.phone,
           agree: [],
@@ -57,6 +63,22 @@ const CheckoutForm = () => {
         validate={validate}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(true);
+          const res = await order({
+            cart: cart,
+            coupon: coupon,
+            user_info: {
+              address: values.address,
+              city: values.city,
+              state: values.state,
+              postcode: Number(values.postcode),
+              country: values.country,
+              phone: values.phone,
+            },
+          });
+          if (res.data.status) {
+            window.location = res.data.url;
+          }
+          setSubmitting(false);
         }}
       >
         {({
@@ -237,7 +259,7 @@ const CheckoutForm = () => {
                   className="w-full"
                   title={`Place order`}
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !cart.price}
                   loading={isSubmitting}
                 />
               </div>
