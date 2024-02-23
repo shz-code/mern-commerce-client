@@ -24,6 +24,7 @@ const profileApi = apiSlice.injectEndpoints({
               }
             )
           );
+          toast.success("Profile Updated Successfully");
         } catch (err) {
           toast.error(err.data.message);
         }
