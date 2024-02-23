@@ -46,7 +46,9 @@ const Profile = () => {
             <h3 className="text-xl font-semibold">Address</h3>
           </div>
           <div className="text-sm">
-            <div>Sophia Anderson 1234 Main St. Anytown, CA 12345</div>
+            <div>
+              {data?.address}, {data?.city}, {data?.postcode}, {data?.country}
+            </div>
           </div>
         </div>
       </div>

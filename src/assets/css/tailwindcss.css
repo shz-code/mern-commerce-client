@@ -141,12 +141,16 @@ nav ul li:hover .nestedLinksContainer {
 
 /* Cart Slider */
 
-.cartSlider {
+.cartSlider, .editProfileModal {
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
 
 .cartSlider::-webkit-scrollbar {
+    display: none;
+}
+
+.editProfileModal::-webkit-scrollbar {
     display: none;
 }
 
