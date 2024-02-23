@@ -5,8 +5,8 @@ import Profile from "./Profile/Profile";
 const Dashboard = () => {
   return (
     <main className="">
-      <div className="lg:grid grid-cols-3 gap-6 space-y-6 lg:space-y-0">
-        <div className="col-span-2 space-y-6">
+      <div className="lg:grid grid-cols-3 gap-2 space-y-4 lg:space-y-0">
+        <div className="col-span-2 space-y-2">
           {/* Payment products info */}
           <PaymentSummary />
           {/* Orders */}

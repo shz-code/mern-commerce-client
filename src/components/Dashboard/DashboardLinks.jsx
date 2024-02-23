@@ -1,4 +1,10 @@
-import { Banknote, Layers2, ListOrdered, ShoppingBag } from "lucide-react";
+import {
+  Banknote,
+  Layers2,
+  ListOrdered,
+  Puzzle,
+  ShoppingBag,
+} from "lucide-react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -39,6 +45,11 @@ const DashboardLinks = () => {
         name: "Products",
         path: "/dashboard/products",
         icon: <ShoppingBag size={18} />,
+      },
+      {
+        name: "Coupons",
+        path: "/dashboard/coupons",
+        icon: <Puzzle size={18} />,
       },
     ];
   return (

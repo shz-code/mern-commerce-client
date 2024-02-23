@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SocialAuth from "./components/Auth/SocialAuth";
 import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Checkout/Checkout";
+import Coupons from "./components/Dashboard/Coupons/Coupons";
 import { Home } from "./components/Home/Home";
 import Layout from "./components/Layout";
 import Success from "./components/OrderRedirects/Success";
@@ -107,6 +108,14 @@ function App() {
                 element={
                   <DashboardLayout>
                     <Categories />
+                  </DashboardLayout>
+                }
+              />
+              <Route
+                path="coupons"
+                element={
+                  <DashboardLayout>
+                    <Coupons />
                   </DashboardLayout>
                 }
               />
