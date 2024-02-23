@@ -16,12 +16,14 @@ const cartApi = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const res = await queryFulfilled;
-          dispatch(
-            apiSlice.util.updateQueryData("getCart", undefined, () => {
-              return res.data.data;
-            })
-          );
-          toast.success(res.data.message);
+          if (res.data.status) {
+            dispatch(
+              apiSlice.util.updateQueryData("getCart", undefined, () => {
+                return res.data.data;
+              })
+            );
+            toast.success(res.data.message);
+          } else toast.error(res.data.message);
         } catch (err) {
           toast.error(err.error.data);
         }

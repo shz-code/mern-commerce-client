@@ -43,7 +43,7 @@ const ProductDetails = () => {
               </p>
               <div className="mt-4 text-2xl font-extrabold">{data.price}৳</div>
               <div>
-                {data.quantity ? (
+                {data.quantity - data.sold > 0 ? (
                   <>
                     <Button className="w-full" title="Add to cart" />
                     <Button

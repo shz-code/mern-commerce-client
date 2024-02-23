@@ -20,6 +20,7 @@ import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Checkout/Checkout";
 import { Home } from "./components/Home/Home";
 import Layout from "./components/Layout";
+import Success from "./components/OrderRedirects/Success";
 import ProductDetails from "./components/Product/ProductDetails";
 import Shop from "./components/Shop/Shop";
 import { userLoggedIn, userLoggedOut } from "./features/auth/authSlice";
@@ -72,6 +73,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/success" element={<Success />} />
         <Route path="/dashboard">
           <Route
             path=""

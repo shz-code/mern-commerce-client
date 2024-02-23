@@ -37,7 +37,7 @@ const Profile = () => {
           <div className="text-sm">
             <div className="space-y-1">
               <span className="text-slate-600">{data?.user?.email}</span>
-              <div className="text-gray-500 ">0{data?.user?.phone}</div>
+              <div className="text-gray-500 ">{data?.user?.phone}</div>
             </div>
           </div>
         </div>

@@ -64,7 +64,7 @@ export const ProductCard = ({ product }) => {
         </div>
         {/* Card Footer */}
         <div className="card-footer sm:flex justify-between items-center border-t mt-4 pt-2">
-          {quantity > 0 ? (
+          {quantity - sold > 0 ? (
             <Button
               title="Add to cart"
               onClick={handleClick}
