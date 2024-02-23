@@ -1,4 +1,5 @@
 import { Formik } from "formik";
+import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useGetCartQuery } from "../../features/cart/cartApi";
 import { useOrderMutation } from "../../features/order/orderApi";
@@ -77,6 +78,8 @@ const CheckoutForm = ({ coupon }) => {
           });
           if (res.data.status) {
             window.location = res.data.url;
+          } else {
+            toast.error(res.data.message);
           }
           setSubmitting(false);
         }}

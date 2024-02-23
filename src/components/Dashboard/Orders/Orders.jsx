@@ -1,4 +1,9 @@
+import { useGetOrdersQuery } from "../../../features/order/orderApi";
+
 const Orders = () => {
+  const { data } = useGetOrdersQuery();
+
+  console.log(data);
   return (
     <main>
       {/* Orders */}
