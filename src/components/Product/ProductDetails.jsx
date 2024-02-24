@@ -107,12 +107,18 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
-        <div className="mt-4 p-4 rounded border-2 shadow-sm">
-          <NewComment product={data} profile={profile} />
-        </div>
+        {!profileLoading &&
+          !profileError &&
+          !isLoading &&
+          !isError &&
+          profile.orderItems.includes(id) && (
+            <div className="mt-4 p-4 rounded border-2 shadow-sm">
+              <NewComment product={data} profile={profile} />
+            </div>
+          )}
         <div className="p-4">
           <h2 className="text-2xl font-medium">Customer Reviews</h2>
-          {data.comments ? (
+          {data.comments.length ? (
             <Comments comments={data.comments} />
           ) : (
             <div>
