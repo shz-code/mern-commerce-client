@@ -32,12 +32,18 @@ const Cart = () => {
           <CartSummary total={total | 0} />
         </div>
       </div>
-      <div className="mt-8">
-        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none pb-8">
-          Related Products
-        </h1>
-        <ProductsGrid lodeMoreHidden query="order=desc&sort=price" mini />
-      </div>
+      {!isError && !isLoading && !data.price && (
+        <div className="mt-8">
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none pb-8">
+            Related Products
+          </h1>
+          <ProductsGrid
+            lodeMoreHidden
+            query="order=desc&sort=price&featured=true&exclude"
+            mini
+          />
+        </div>
+      )}
     </div>
   );
 };
