@@ -48,7 +48,7 @@ export const ProductCard = ({ product }) => {
         </div>
         {/* Card Body */}
         <div className="card-body grid gap-1 mt-2">
-          <p>
+          <p className="mt-2">
             {description.length > 60 ? (
               <span>{description.substring(0, 60)}...</span>
             ) : (
@@ -78,7 +78,8 @@ export const ProductCard = ({ product }) => {
               disabled
             />
           )}
-          <div className="flex gap-1 justify-center sm:justify-end mt-2 sm:mt-0">
+          <div className="grid gap-1 justify-center sm:justify-end mt-2 sm:mt-0">
+            <span className="font-bold">{quantity - sold} Available</span>
             <span className="font-bold">{sold} Sold</span>
           </div>
         </div>

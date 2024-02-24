@@ -25,7 +25,6 @@ const productsApi = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const res = await queryFulfilled;
-          console.log(res);
           dispatch(
             apiSlice.util.updateQueryData(
               "getProduct",

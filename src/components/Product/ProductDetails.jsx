@@ -1,4 +1,5 @@
 import { Star, Tag } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useUpdateCartMutation } from "../../features/cart/cartApi";
@@ -26,6 +27,26 @@ const ProductDetails = () => {
     isError: profileError,
   } = useGetProfileQuery(_id);
 
+  const [ratingGot, setRatingGot] = useState([]);
+  const [ratingLeft, setRatingLeft] = useState([]);
+
+  useEffect(() => {
+    if (!isLoading && !isError && data?.rating) {
+      const ratingArr = new Array(parseInt(data.rating));
+      for (let i = 0; i < parseInt(data.rating); i++) {
+        ratingArr[i] = (i + 1).toString();
+      }
+      setRatingGot(ratingArr);
+      const ratingLeftArr = new Array(5 - parseInt(data.rating));
+      for (let i = 0; i < 5 - parseInt(data.rating); i++) {
+        ratingLeftArr[i] = (i + 1).toString();
+      }
+      setRatingLeft(ratingLeftArr);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading, isError, data]);
+
   let content = null;
   if (isLoading) content = <Loader />;
   else if (!isLoading && isError) content = <Error message={error.data} />;
@@ -51,11 +72,12 @@ const ProductDetails = () => {
                 {data.description}
               </p>
               <p className="flex -ms-2">
-                <Star className="fill-yellow-500 stroke-none" />
-                <Star className="fill-yellow-500 stroke-none" />
-                <Star className="fill-yellow-500 stroke-none" />
-                <Star className="fill-yellow-500 stroke-none" />
-                <Star className="fill-yellow-500 stroke-none" />
+                {ratingGot.map((arr, index) => (
+                  <Star key={index} className="fill-yellow-500 stroke-none" />
+                ))}
+                {ratingLeft.map((arr, index) => (
+                  <Star key={index} className="fill-slate-200 stroke-none" />
+                ))}
               </p>
               <div className="mt-4 text-2xl font-extrabold">{data.price}৳</div>
               <div className="flex justify-between">
