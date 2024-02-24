@@ -31,7 +31,10 @@ export const Home = () => {
             Featured Products
           </h2>
           <div className="mt-8">
-            <ProductsGrid lodeMoreHidden query="order=desc&sort=price" />
+            <ProductsGrid
+              lodeMoreHidden
+              query="sort=commentsCount&order=desc&limit=3&featured=true"
+            />
           </div>
         </div>
       </section>

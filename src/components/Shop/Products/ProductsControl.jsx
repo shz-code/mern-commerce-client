@@ -1,17 +1,17 @@
 import { useDispatch } from "react-redux";
-import { updateSort } from "../../../features/filter/filterSlice";
+import {
+  setQuery,
+  updateOrdering,
+  updateSort,
+} from "../../../features/filter/filterSlice";
 import Select from "../../ui/Select";
 
 const ProductsControl = () => {
   const dispatch = useDispatch();
-  const selectItem = [
+  const ordering = [
     {
       value: "default",
       label: "Default",
-    },
-    {
-      value: "top_sell",
-      label: "Best Selling",
     },
     {
       value: "asc",
@@ -22,12 +22,42 @@ const ProductsControl = () => {
       label: "High to Low",
     },
   ];
+  const sortBy = [
+    {
+      value: "default",
+      label: "Default",
+    },
+    {
+      value: "price",
+      label: "Price",
+    },
+    {
+      value: "sold",
+      label: "Sold",
+    },
+    {
+      value: "review",
+      label: "Review",
+    },
+  ];
   return (
-    <div className="flex justify-end">
+    <div className="flex justify-end gap-4">
       <Select
-        selectItem={selectItem}
+        label="Ordering"
+        selectItem={ordering}
+        handleChange={(e) => dispatch(updateOrdering(e.target.value))}
+      />
+      <Select
+        label="Sort By"
+        selectItem={sortBy}
         handleChange={(e) => dispatch(updateSort(e.target.value))}
       />
+      <span
+        className="text-xs flex justify-end mt-2 cursor-pointer underline font-semibold"
+        onClick={() => dispatch(setQuery())}
+      >
+        Filter
+      </span>
     </div>
   );
 };

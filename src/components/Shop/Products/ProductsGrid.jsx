@@ -16,10 +16,12 @@ const ProductsGrid = ({ query, lodeMoreHidden, mini = false }) => {
   let content = null;
   if (isLoading) content = <Loader />;
   else if (!isLoading && isError) content = <Error message={error.data} />;
-  else if (!isLoading && !isError && !data.length)
+  else if (!isLoading && !isError && !data.products.length)
     content = <Error message="Nothing Found" />;
-  else if (!isLoading && !isError && data.length)
-    content = data.map((item) => <ProductCard key={item._id} product={item} />);
+  else if (!isLoading && !isError && data.products.length)
+    content = data.products.map((item) => (
+      <ProductCard key={item._id} product={item} />
+    ));
 
   return (
     <>
@@ -31,7 +33,7 @@ const ProductsGrid = ({ query, lodeMoreHidden, mini = false }) => {
         {content}
       </div>
       <div className="flex justify-center mt-4">
-        {!isError && !isLoading && data.length && !lodeMoreHidden && (
+        {!isError && !isLoading && data.loadMore && !lodeMoreHidden && (
           <Button
             className="bg-transparent text-black border border-slate-800 hover:bg-slate-100 text-sm px-2 py-1"
             title="Load More"

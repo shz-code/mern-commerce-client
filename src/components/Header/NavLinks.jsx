@@ -11,7 +11,7 @@ const NavLinks = () => {
     {
       name: "Shop",
       path: "/shop",
-      nested: true,
+      nested: false,
       children: [
         {
           name: "Categories",

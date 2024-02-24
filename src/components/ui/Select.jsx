@@ -1,6 +1,12 @@
 import { twMerge } from "tailwind-merge";
 
-const Select = ({ selectItem = [], handleChange, className, ...rest }) => {
+const Select = ({
+  selectItem = [],
+  handleChange,
+  className,
+  label = "",
+  ...rest
+}) => {
   return (
     <select
       className={twMerge(
@@ -11,7 +17,7 @@ const Select = ({ selectItem = [], handleChange, className, ...rest }) => {
       {...rest}
     >
       <option hidden value="">
-        Select
+        {label ? label : "Select"}
       </option>
       {selectItem.map((item) => (
         <option

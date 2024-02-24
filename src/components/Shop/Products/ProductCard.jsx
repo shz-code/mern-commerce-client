@@ -1,4 +1,4 @@
-import { Tag } from "lucide-react";
+import { MessageSquareHeart, Tag } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useUpdateCartMutation } from "../../../features/cart/cartApi";
@@ -6,7 +6,16 @@ import { toggleCartSlideOpen } from "../../../features/utility/utilitySlice";
 import Button from "../../ui/Button";
 
 export const ProductCard = ({ product }) => {
-  const { _id, name, price, description, quantity, category, sold } = product;
+  const {
+    _id,
+    name,
+    price,
+    description,
+    quantity,
+    category,
+    sold,
+    commentsCount,
+  } = product;
 
   const [updateCart, { isLoading }] = useUpdateCartMutation();
 
@@ -31,6 +40,15 @@ export const ProductCard = ({ product }) => {
       </Link>
       {/* Card Details */}
       <div className="listRoomCard-details">
+        <div className="flex items-center">
+          <span>Reviews</span>{" "}
+          <span className="px-1">
+            <MessageSquareHeart size={15} />
+          </span>
+          <span className="space-x-2">
+            : <b>{commentsCount}</b>{" "}
+          </span>
+        </div>
         <div className="flex justify-between">
           <h5 className="font-semibold text-lg">
             <Link to={`/product/${_id}`}>

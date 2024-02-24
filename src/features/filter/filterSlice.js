@@ -3,11 +3,22 @@ import { createSlice } from "@reduxjs/toolkit";
 const makeQuery = (state, action) => {
   let query = "";
   // Sort and Order query
-  if (state.sort === "top_sell") {
-    query += "&sort=sale&order=desc";
-  } else if (state.sort != "default") {
-    query += `&sort=price&order=${state.sort}`;
+  if (state.sort === "sold") {
+    query += "sort=sold";
+  } else if (state.sort === "price") {
+    query += `sort=price`;
+  } else if (state.sort === "review") {
+    query += `sort=commentsCount`;
+  } else if (state.sort === "default") {
+    query += `sort=_id`;
   }
+
+  if (state.ordering === "desc") {
+    query += "&order=desc";
+  } else if (state.ordering === "asc") {
+    query += `&order=asc`;
+  }
+
   // min max query
   if (query.length)
     query += `&min=${state.priceRange[0]}&max=${state.priceRange[1]}`;
@@ -30,8 +41,9 @@ const initialState = {
   search: "",
   categories: [],
   priceRange: [1, 50000],
+  ordering: "default",
   sort: "default",
-  skip: 1,
+  skip: 2,
   limit: 1,
   query: "",
 };
@@ -42,6 +54,9 @@ const filterSlice = createSlice({
   reducers: {
     updateSearch: (state, action) => {
       state.search = action.payload;
+    },
+    updateOrdering: (state, action) => {
+      state.ordering = action.payload;
     },
     updateSort: (state, action) => {
       state.sort = action.payload;
@@ -88,6 +103,7 @@ export default filterSlice.reducer;
 export const {
   updateSearch,
   updateSort,
+  updateOrdering,
   updateSkip,
   addCategories,
   removeCategories,
