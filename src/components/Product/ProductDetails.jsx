@@ -1,14 +1,30 @@
-import { Star, Tag, User } from "lucide-react";
+import { Star, Tag } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useUpdateCartMutation } from "../../features/cart/cartApi";
 import { useGetProductQuery } from "../../features/products/productsApi";
+import { useGetProfileQuery } from "../../features/profile/profileApi";
+import { toggleCartSlideOpen } from "../../features/utility/utilitySlice";
 import Button from "../ui/Button";
 import Error from "../ui/Error";
 import Loader from "../ui/Loader";
+import Comments from "./Comments";
+import NewComment from "./NewComment";
 
 const ProductDetails = () => {
   const { id } = useParams();
 
   const { data, isLoading, isError, error } = useGetProductQuery(id);
+
+  const dispatch = useDispatch();
+  const [updateCart] = useUpdateCartMutation();
+
+  const { _id } = useSelector((state) => state.user);
+  const {
+    data: profile,
+    isLoading: profileLoading,
+    isError: profileError,
+  } = useGetProfileQuery(_id);
 
   let content = null;
   if (isLoading) content = <Loader />;
@@ -42,13 +58,31 @@ const ProductDetails = () => {
                 <Star className="fill-yellow-500 stroke-none" />
               </p>
               <div className="mt-4 text-2xl font-extrabold">{data.price}৳</div>
+              <div className="flex justify-between">
+                <div>
+                  Available:{" "}
+                  <span className="font-semibold">
+                    {data.quantity - data.sold}
+                  </span>{" "}
+                </div>
+                <div>
+                  Sold: <span className="font-semibold">{data.sold}</span>
+                </div>
+              </div>
               <div>
                 {data.quantity - data.sold > 0 ? (
                   <>
-                    <Button className="w-full" title="Add to cart" />
                     <Button
-                      title="Buy now"
-                      className="w-full bg-slate-100 text-black hover:bg-slate-200 mt-2"
+                      className="w-full"
+                      title="Add to cart"
+                      onClick={async () => {
+                        await updateCart({
+                          product: id,
+                          price: data.price,
+                          name: data.name,
+                        });
+                        dispatch(toggleCartSlideOpen());
+                      }}
                     />
                   </>
                 ) : (
@@ -73,34 +107,25 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
+        <div className="mt-4 p-4 rounded border-2 shadow-sm">
+          <NewComment product={data} profile={profile} />
+        </div>
         <div className="p-4">
           <h2 className="text-2xl font-medium">Customer Reviews</h2>
-          <div className="mt-4 space-y-4">
-            <div className="flex items-center gap-4">
-              <span className="inline-block p-2 rounded-full bg-slate-200 cursor-pointe">
-                <User size={20} />
-              </span>
-              <div className="space-y-1">
-                <div className="flex items-center space-x-2">
-                  <div className="text-sm font-medium">John Doe</div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">
-                    2 days ago
-                  </div>
-                </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  I love this T-shirt! The material is very soft and it fits
-                  perfectly. I will definitely be buying more!
-                </p>
-                <p className="flex">
-                  <Star className="fill-yellow-500 stroke-none" />
-                  <Star className="fill-yellow-500 stroke-none" />
-                  <Star className="fill-yellow-500 stroke-none" />
-                  <Star className="fill-yellow-500 stroke-none" />
-                  <Star className="fill-yellow-500 stroke-none" />
-                </p>
-              </div>
+          {data.comments ? (
+            <Comments comments={data.comments} />
+          ) : (
+            <div>
+              <p className="mt-4">No Reviews Yet!</p>
+              <p className="flex -ms-1">
+                <Star className="fill-slate-200 stroke-none" />
+                <Star className="fill-slate-200 stroke-none" />
+                <Star className="fill-slate-200 stroke-none" />
+                <Star className="fill-slate-200 stroke-none" />
+                <Star className="fill-slate-200 stroke-none" />
+              </p>
             </div>
-          </div>
+          )}
         </div>
       </>
     );
