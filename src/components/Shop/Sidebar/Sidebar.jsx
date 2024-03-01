@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   reset,
   setQuery,
@@ -12,6 +12,8 @@ import PriceFilters from "./PriceFilters";
 const Sidebar = () => {
   const [showCategories, setShowCategories] = useState(true);
   const [showPricesFilter, setShowPricesFilter] = useState(true);
+
+  const { search } = useSelector((state) => state.filter);
 
   const dispatch = useDispatch();
 
@@ -34,6 +36,7 @@ const Sidebar = () => {
         <Input
           className="text-black focus:ring-slate-600 shadow-none"
           placeholder="Search Products ... "
+          value={search}
           onChange={handleChange}
         />
       </div>

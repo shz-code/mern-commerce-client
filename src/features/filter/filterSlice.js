@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const makeQuery = (state, action) => {
+const makeQuery = (state) => {
   let query = "";
   // Sort and Order query
   if (state.sort === "sold") {
@@ -24,9 +24,7 @@ const makeQuery = (state, action) => {
     query += `&min=${state.priceRange[0]}&max=${state.priceRange[1]}`;
   else query += `min=${state.priceRange[0]}&max=${state.priceRange[1]}`;
 
-  if (action.type === "filter/updateSkip") {
-    query += `&limit=${state.skip + state.limit}`;
-  }
+  query += `&limit=${state.skip}`;
 
   if (state.categories.length > 0) {
     query += `&category=[${state.categories.map((ct) => `"${ct}"`)}]`;
@@ -44,7 +42,7 @@ const initialState = {
   ordering: "default",
   sort: "default",
   skip: 2,
-  limit: 1,
+  limit: 2,
   query: "",
 };
 
@@ -61,9 +59,9 @@ const filterSlice = createSlice({
     updateSort: (state, action) => {
       state.sort = action.payload;
     },
-    updateSkip: (state, action) => {
-      let query = makeQuery(state, action);
-      state.skip = state.skip + state.limit;
+    updateSkip: (state) => {
+      state.skip += state.limit;
+      let query = makeQuery(state);
       state.query = query;
     },
     initiateCategories: (state, action) => {
@@ -84,8 +82,8 @@ const filterSlice = createSlice({
       state.priceRange[1] = action.payload;
     },
     // limit=1&min=1&max=50000&skip=0&category=["65cf8d46ae3c6928ced6828a"]
-    setQuery: (state, action) => {
-      let query = makeQuery(state, action);
+    setQuery: (state) => {
+      let query = makeQuery(state);
       state.query = query;
     },
     reset: (state) => {
