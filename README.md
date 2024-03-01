@@ -69,7 +69,7 @@ npm install
 #### Start the development server:
 
 ```bash
-npm start
+npm run dev
 ```
 
 #### The MERN-Commerce client will be accessible at http://localhost:5173 in your web browser.
